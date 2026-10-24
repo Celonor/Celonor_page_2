@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akaru Portfolio — GSAP Horizontal Scroll</title>
+  
+  <!-- Google Fonts: Antonio (Bold Condensada para AKARU) e Inter (UI y títulos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       1. PRELOADER (Fondo negro + 5 líneas verticales blancas)
+  ========================================================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__bars">
+      <div class="bar bar--split"></div>
+      <div class="bar bar--split"></div>
+      <div class="bar bar--split"></div>
+      <div class="bar bar--split"></div>
+      <div class="bar bar--solid"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       2. ELEMENTOS FIJOS SUPERIORES (Logo Pequeño + Píldora MENU)
+  ========================================================== -->
+  <!-- Pequeño Logo "AKARU" fijo arriba a la izquierda (z-index: 999) -->
+  <a href="#top" class="fixed-small-logo" id="smallAkaruLogo" aria-label="Volver al inicio">
+    <span class="small-char">C</span>
+    <span class="small-char">E</span>
+    <span class="small-char">L</span>
+    <span class="small-char">O</span>
+    <span class="small-char">N</span>
+    <span class="small-char">O</span>
+    <span class="small-char">R</span>
+  </a>
+
+  <!-- Botón Píldora de MENÚ arriba a la derecha con dos líneas verticales centradas -->
+  <button class="menu-pill" id="menuBtn" aria-label="Abrir menú">
+    <span class="menu-pill__text" id="menuText">MENU</span>
+    <span class="menu-pill__circle" id="menuCircle">
+      <span class="hamburger">
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  </button>
+
+  <!-- =========================================================
+       3. CONTENEDOR PRINCIPAL (Fake Horizontal Scroll)
+  ========================================================== -->
+  <main class="main-wrapper" id="mainWrapper">
+    <div class="horizontal-track" id="horizontalTrack">
+
+      <!-- PANEL IZQUIERDO: Hero Fijo al contenedor inicial (50vw) -->
+      <section class="hero-panel">
+        <!-- Navbar Superior: hover en toda la palabra/link y puntos grandes -->
+        <nav class="navbar">
+          <a href="#projects" class="nav-link">
+            <span class="nav-dot-wrap">
+              <span class="nav-dot-bg" style="--dot-color: #e67e51;"></span>
+              <span class="nav-arrow"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            </span>
+            <span class="nav-text">Projects</span>
+          </a>
+
+          <a href="#expertise" class="nav-link">
+            <span class="nav-dot-wrap">
+              <span class="nav-dot-bg" style="--dot-color: #849687;"></span>
+              <span class="nav-arrow"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            </span>
+            <span class="nav-text">Expertise</span>
+          </a>
+
+          <a href="#agency" class="nav-link">
+            <span class="nav-dot-wrap">
+              <span class="nav-dot-bg" style="--dot-color: #b597a3;"></span>
+              <span class="nav-arrow"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            </span>
+            <span class="nav-text">Agency</span>
+          </a>
+
+          <a href="#contact" class="nav-link">
+            <span class="nav-dot-wrap">
+              <span class="nav-dot-bg" style="--dot-color: #c1ccd7;"></span>
+              <span class="nav-arrow"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            </span>
+            <span class="nav-text">Contact</span>
+          </a>
+        </nav>
+
+        <!-- Bloque Central: Logo Gigante AKARU + Descripción sin superposición -->
+        <div class="hero-center">
+          <div class="hero-giant-logo" aria-label="CELONOR">
+            <span>C</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>N</span>
+            <span>O</span>
+            <span>R</span>
+          </div>
+
+          <p class="hero-description">
+            Frontend development, motion design &amp; creative web experiments. Exploring smooth
+            interactions, functional programming and modern UI architectures.
+          </p>
+        </div>
+
+        <!-- Redes Sociales -->
+        <footer class="hero-socials">
+          <a href="#instagram" class="social-link">INSTAGRAM</a>
+          <a href="#linkedin" class="social-link">LINKEDIN</a>
+          <a href="#twitter" class="social-link">TWITTER</a>
+          <a href="#facebook" class="social-link">FACEBOOK</a>
+        </footer>
+      </section>
+
+      <!-- SECCIÓN DERECHA: Track de Proyectos con Franjas Expansivas -->
+      <section class="projects-track">
+
+        <!-- PROYECTO 01: Archidomo -->
+        <article class="project-card card--1" style="--card-bg: #c1ccd7;">
+          <div class="project-card__image-wrap">
+            <img src="img/1.jpg" alt="Megumin" class="project-card__img" />
+          </div>
+          
+          <div class="project-card__content">
+            <div class="project-card__meta">
+              <div class="meta-mask meta-mask--left">
+                <span class="meta-item meta-year">2013</span>
+              </div>
+              <div class="meta-mask meta-mask--center">
+                <span class="meta-item meta-type">FICTIONAL CHARACTER</span>
+              </div>
+              <div class="meta-mask meta-mask--right">
+                <span class="meta-item meta-role">ARCHMAGE OF THE CRIMSON MAGIC CLAN<br>CHARACTER OF KONOSUBA</span>
+              </div>
+            </div>
+
+            <div class="title-mask">
+              <h2 class="project-card__title" data-split="chars">Megumin</h2>
+            </div>
+          </div>
+
+          <div class="project-card__footer">
+            <span class="project-card__index">01</span>
+            <a href="#megumin" class="project-card__btn" aria-label="Ver proyecto Megumin">
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 02: Orlinski -->
+        <article class="project-card card--2" style="--card-bg: #b597a3;">
+          <div class="project-card__image-wrap">
+            <img src="img/2.jpg" alt="Hatsune Miku" class="project-card__img" />
+          </div>
+          
+          <div class="project-card__content">
+            <div class="project-card__meta">
+              <div class="meta-mask meta-mask--left">
+                <span class="meta-item meta-year">2007</span>
+              </div>
+              <div class="meta-mask meta-mask--center">
+                <span class="meta-item meta-type">VIRTUAL SINGER</span>
+              </div>
+              <div class="meta-mask meta-mask--right">
+                <span class="meta-item meta-role">VOCALOID VOICEBANK &amp; CULTURAL ICON<br>DEVELOPED BY CRYPTON FUTURE MEDIA</span>
+              </div>
+            </div>
+
+            <div class="title-mask">
+              <h2 class="project-card__title" data-split="chars">Hatsune Miku</h2>
+            </div>
+          </div>
+
+          <div class="project-card__footer">
+            <span class="project-card__index">02</span>
+            <a href="#hatsune-miku" class="project-card__btn" aria-label="Ver proyecto Hatsune Miku">
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 03: Pikko -->
+        <article class="project-card card--3" style="--card-bg: #7c8f7f;">
+          <div class="project-card__image-wrap">
+            <img src="img/3.jpg" alt="Kiriko" class="project-card__img" />
+          </div>
+          
+          <div class="project-card__content">
+            <div class="project-card__meta">
+              <div class="meta-mask meta-mask--left">
+                <span class="meta-item meta-year">2022</span>
+              </div>
+              <div class="meta-mask meta-mask--center">
+                <span class="meta-item meta-type">SUPPORT HERO</span>
+              </div>
+              <div class="meta-mask meta-mask--right">
+                <span class="meta-item meta-role">KITSUNE HEALER &amp; KANEOZAKA DEFENDER<br>OVERWATCH 2 PLAYABLE CHARACTER</span>
+              </div>
+            </div>
+
+            <div class="title-mask">
+              <h2 class="project-card__title" data-split="chars">Kiriko</h2>
+            </div>
+          </div>
+
+          <div class="project-card__footer">
+            <span class="project-card__index">03</span>
+            <a href="#kiriko" class="project-card__btn" aria-label="Ver proyecto Kiriko">
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Margen limpio en crema a la derecha de Pikko donde termina el scroll -->
+        <div class="end-spacer"></div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

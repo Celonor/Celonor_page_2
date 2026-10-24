@@ -1,0 +1,626 @@
+/* =========================================================
+   RESET Y VARIABLES BASE
+========================================================= */
+:root {
+  --bg-cream: #f0efeb;
+  --text-dark: #121212;
+  --accent-orange: #e68a5c;
+  --font-condensed: 'Antonio', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================================
+   1. PRELOADER (Fondo negro + 5 líneas blancas)
+========================================================= */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background-color: #0d0d0d;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader__bars {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+  height: 220px;
+}
+
+.preloader__bars .bar {
+  width: 5px;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 2px;
+  position: relative;
+  transform-origin: center center;
+}
+
+.preloader__bars .bar--split::after {
+  content: "";
+  position: absolute;
+  top: 48%;
+  left: -2px;
+  right: -2px;
+  height: 8px;
+  background-color: #0d0d0d;
+}
+
+/* =========================================================
+   2. ELEMENTOS FIJOS: LOGO PEQUEÑO Y PÍLDORA DE MENÚ
+========================================================= */
+/* 3. VISIBILIDAD Y PERMANENCIA DEL LOGO PEQUEÑO */
+.fixed-small-logo {
+  position: fixed;
+  top: 26px;
+  left: 28px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  overflow: hidden;
+  padding: 4px 6px;
+  pointer-events: none; /* Se activa por JS al aparecer */
+}
+
+.small-char {
+  display: inline-block;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 2.7rem;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  will-change: transform, opacity;
+}
+
+/* 4. MENÚ PÍLDORA (ARRIBA A LA DERECHA) */
+.menu-pill {
+  position: fixed;
+  top: 22px;
+  right: 28px;
+  z-index: 999;
+  height: 56px;
+  width: 56px; /* Inicia como círculo y GSAP lo expande a 148px */
+  background-color: #161616;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0 16px 0 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  /* Anti-aliasing: fuerza capa GPU para suavizar bordes */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: width, transform, opacity;
+}
+
+.menu-pill__text {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-pill__circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--accent-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dos líneas VERTICALES perfectamente centradas en el círculo naranja */
+.hamburger {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* centradas. Usa flex-start para alinearlas a la izquierda */
+  gap: 3px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 1px;
+}
+
+.hamburger span:nth-child(1) { width: 14px; } /* superior, más ancha */
+.hamburger span:nth-child(2) { width: 9px; }  /* inferior, más corta */
+
+/* Hover sobre toda la píldora: crece el círculo naranja y muestra las 2 líneas verticales */
+.menu-pill:hover .menu-pill__circle {
+  transform: scale(1.55) translateZ(0) !important;
+}
+
+.menu-pill:hover .hamburger {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================================================
+   3. LAYOUT DEL HOME & TRACK HORIZONTAL
+========================================================= */
+.main-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.horizontal-track {
+  display: flex;
+  height: 100vh;
+  width: max-content;
+  will-change: transform;
+}
+
+/* --- SECCIÓN IZQUIERDA (HERO PANEL: 50vw) --- */
+.hero-panel {
+  width: 50vw;
+  height: 100vh;
+  background-color: var(--bg-cream);
+  padding: 24px 0 22px 2.2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+/* 2. NAVBAR Y HOVERS DE LOS PUNTOS DE COLOR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 3.2vw;
+  position: relative;
+  z-index: 20;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Evita parpadeos garantizando que el hover lo reciba siempre .nav-link */
+.nav-link * {
+  pointer-events: none;
+}
+
+.nav-dot-wrap {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Tamaño inicial pequeño (8px) */
+.nav-dot-bg {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--dot-color, var(--accent-orange));
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center center;
+}
+
+.nav-arrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  /* La flecha NO escala ni se mueve: siempre centrada y de tamaño fijo */
+  pointer-events: none;
+}
+
+.nav-arrow svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  overflow: visible;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Estado de reposo: trazos "sin dibujar" (pathLength=1 normaliza la longitud) */
+.nav-arrow path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0; /* evita el punto residual del linecap redondeado */
+  transition: stroke-dashoffset 0.15s ease-in, opacity 0s linear 0.15s;
+}
+
+/* Hover: el punto crece y CONSERVA su color original (sin override) */
+.nav-link:hover .nav-dot-bg {
+  transform: scale(4);
+}
+
+/* 1) Se dibuja rápido el tallo */
+.nav-link:hover .arrow-stem {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.22s cubic-bezier(0.65, 0, 0.35, 1), opacity 0s;
+}
+
+/* 2) Una fracción de segundo después, se revela la punta */
+.nav-link:hover .arrow-head {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.18s cubic-bezier(0.22, 1, 0.36, 1) 0.14s, opacity 0s linear 0.14s;
+}
+
+/* 1. CORRECCIONES DEL LOGO GIGANTE "AKARU" */
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto 0;
+}
+
+.hero-giant-logo {
+  width: 100%;
+  padding-right: 3.6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  margin-bottom: 5.5vh; /* Margen amplio para no superponerse nunca con la descripción */
+}
+
+.hero-giant-logo span {
+  display: inline-block;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 12.5vw;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  transform: scaleY(1.05); /* Estiramiento vertical moderado, grueso y condensado */
+  transform-origin: top center;
+}
+
+.hero-description {
+  position: relative;
+  z-index: 2;
+  padding-right: 3.6vw;
+  font-size: 15.5px;
+  line-height: 1.45;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+/* Redes Sociales Inferiores */
+.hero-socials {
+  margin-right: 3.2vw;
+  border-top: 1px solid rgba(18, 18, 18, 0.45);
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.social-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.social-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--text-dark);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* =========================================================
+   4. SECCIÓN DERECHA: TRACK DE PROYECTOS (FRANJAS EXPANSIVAS)
+========================================================= */
+.projects-track {
+  display: flex;
+  height: 100vh;
+}
+
+.project-card {
+  height: 100vh;
+  background-color: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  will-change: width;
+}
+
+/* Estado Inicial (Scroll = 0): Franjas asimétricas que suman 50vw */
+.project-card.card--1 {
+  width: 36vw;
+}
+.project-card.card--2 {
+  width: 11vw;
+}
+.project-card.card--3 {
+  width: 3vw;
+}
+
+/* Contenedor de imagen */
+.project-card__image-wrap {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  will-change: height, margin-top;
+}
+
+.card--1 .project-card__image-wrap {
+  height: 40vh;
+  margin-top: 19vh;
+}
+
+.card--2 .project-card__image-wrap {
+  height: 27vh;
+  margin-top: 51vh;
+}
+
+.card--3 .project-card__image-wrap {
+  height: 14vh;
+  margin-top: 70vh;
+}
+
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 5. VISIBILIDAD DE LOS TÍTULOS Y ANIMACIONES DE TEXTO */
+.project-card__content {
+  position: absolute;
+  top: 66vh;
+  left: 0;
+  width: 66vw;
+  height: 34vh;
+  z-index: 25; /* Siempre por encima de las imágenes y capas de fondo */
+  padding: 18px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.project-card__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+}
+
+/* "Piso" invisible para la metadata */
+.meta-mask {
+  overflow: hidden;
+  display: flex;
+  padding: 2px 0;
+}
+
+.meta-mask--left {
+  justify-content: flex-start;
+}
+
+.meta-mask--center {
+  justify-content: center;
+}
+
+.meta-mask--right {
+  justify-content: flex-end;
+}
+
+.meta-item {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.meta-year {
+  border: 1px solid rgba(18, 18, 18, 0.75);
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-size: 10px;
+}
+
+.meta-role {
+  text-align: left;
+  line-height: 1.35;
+}
+
+/* "Piso" invisible para el Título del Proyecto ("Archidomo", "Orlinski", "Pikko") */
+.title-mask {
+  overflow: hidden;
+  width: 100%;
+  margin: auto 0;
+  padding: 6px 0;
+}
+
+.project-card__title {
+  font-family: var(--font-sans);
+  font-size: clamp(4rem, 6.6vw, 7.2rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  text-align: center;
+  line-height: 1.05;
+  color: var(--text-dark);
+}
+
+.project-card__title .char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Pie de Tarjeta: Índice (01, 02, 03) + Botón circular */
+.project-card__footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 35;
+  padding: 0 28px 20px 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.project-card__index {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* 6. HOVER DEL BOTÓN CIRCULAR EN LAS IMÁGENES */
+.project-card__btn {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-dark);
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Pseudo-elemento negro centrado que escala de 0 a 1 */
+.project-card__btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--text-dark);
+  transform: scale(0);
+  transform-origin: center center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+/* Flecha quieta en su sitio, solo cambia de color a blanco */
+.project-card__btn .btn-arrow {
+  position: relative;
+  z-index: 2;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+/* Hover sobre la imagen o sobre el propio botón */
+.project-card__image-wrap:hover ~ .project-card__footer .project-card__btn::before,
+.project-card__btn:hover::before {
+  transform: scale(1);
+}
+
+.project-card__image-wrap:hover ~ .project-card__footer .project-card__btn .btn-arrow,
+.project-card__btn:hover .btn-arrow {
+  color: #ffffff;
+}
+
+/* Margen limpio a la derecha de Pikko (34vw) */
+.end-spacer {
+  width: 34vw;
+  height: 100vh;
+  background-color: var(--bg-cream);
+  flex-shrink: 0;
+}

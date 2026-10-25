@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Celonor</title>
   
-  <!-- Google Fonts: Antonio (Bold Condensada para AKARU) e Inter (UI y títulos) -->
+  <!-- Google Fonts: Antonio (Bold Condensada para CELONOR) e Inter (UI y títulos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,7 +30,6 @@
   <!-- =========================================================
        2. ELEMENTOS FIJOS SUPERIORES (Logo Pequeño + Píldora MENU)
   ========================================================== -->
-  <!-- Pequeño Logo "AKARU" fijo arriba a la izquierda (z-index: 999) -->
   <a href="#top" class="fixed-small-logo" id="smallAkaruLogo" aria-label="Volver al inicio">
     <span class="small-char">C</span>
     <span class="small-char">E</span>
@@ -41,7 +40,6 @@
     <span class="small-char">R</span>
   </a>
 
-  <!-- Botón Píldora de MENÚ arriba a la derecha con dos líneas verticales centradas -->
   <button class="menu-pill" id="menuBtn" aria-label="Abrir menú">
     <span class="menu-pill__text" id="menuText">MENU</span>
     <span class="menu-pill__circle" id="menuCircle">
@@ -60,7 +58,6 @@
 
       <!-- PANEL IZQUIERDO: Hero Fijo al contenedor inicial (50vw) -->
       <section class="hero-panel">
-        <!-- Navbar Superior: hover en toda la palabra/link y puntos grandes -->
         <nav class="navbar">
           <a href="#projects" class="nav-link">
             <span class="nav-dot-wrap">
@@ -95,7 +92,7 @@
           </a>
         </nav>
 
-        <!-- Bloque Central: Logo Gigante AKARU + Descripción sin superposición -->
+        <!-- Bloque Central: Logo Gigante CELONOR + Descripción -->
         <div class="hero-center">
           <div class="hero-giant-logo" aria-label="CELONOR">
             <span>C</span>
@@ -125,7 +122,7 @@
       <!-- SECCIÓN DERECHA: Track de Proyectos con Franjas Expansivas -->
       <section class="projects-track">
 
-        <!-- PROYECTO 01: Archidomo -->
+        <!-- PROYECTO 01: Megumin -->
         <article class="project-card card--1" style="--card-bg: #c1ccd7;">
           <div class="project-card__image-wrap">
             <img src="img/1.jpg" alt="Megumin" class="project-card__img" />
@@ -157,7 +154,7 @@
           </div>
         </article>
 
-        <!-- PROYECTO 02: Orlinski -->
+        <!-- PROYECTO 02: Hatsune Miku -->
         <article class="project-card card--2" style="--card-bg: #b597a3;">
           <div class="project-card__image-wrap">
             <img src="img/2.jpg" alt="Hatsune Miku" class="project-card__img" />
@@ -189,12 +186,161 @@
           </div>
         </article>
 
-        <!-- PROYECTO 03: Pikko -->
-        <article class="project-card card--3" style="--card-bg: #7c8f7f;">
-          <div class="project-card__image-wrap">
-            <img src="img/3.jpg" alt="Kiriko" class="project-card__img" />
-          </div>
+        <!-- =========================================================
+             PROYECTO 03 (KIRIKO) + REEL VERTICAL IZQUIERDO (35vw)
+        ========================================================== -->
+        <article class="project-card card--3" id="kirikoCard" style="--card-bg: #7c8f7f;">
           
+          <!-- Track vertical que sube en las Fases 4 y 6 -->
+          <div class="vertical-reel-track" id="verticalReelTrack">
+            
+            <!-- 1. Imagen de Kiriko que se adapta de 66vh a 45vh y sube -->
+            <div class="project-card__image-wrap" id="kirikoImgWrap">
+              <img src="img/3.jpg" alt="Kiriko" class="project-card__img" />
+            </div>
+
+            <!-- 2. Siete (7) tarjetas de películas verticales + Bloque verde final -->
+            <div class="reel-items-group" id="reelItemsGroup">
+              
+              <!-- Tarjeta Vertical 1 -->
+              <article class="reel-item">
+                <img src="img/proyects/1.jpg" alt="A Silent Voice" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / DRAMA</span>
+                    <span class="reel-item__year">2016</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">A Silent Voice</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta Vertical 2 -->
+              <article class="reel-item">
+                <img src="img/proyects/2.jpg" alt="Look Back" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / COMING-OF-AGE</span>
+                    <span class="reel-item__year">2024</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">Look Back</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta Vertical 3 -->
+              <article class="reel-item">
+                <img src="img/proyects/3.jpg" alt="Suzume" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / ADVENTURE</span>
+                    <span class="reel-item__year">2022</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">Suzume</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta Vertical 4 -->
+              <article class="reel-item">
+                <img src="img/proyects/4.jpg" alt="I Want to Eat Your Pancreas" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / ROMANCE</span>
+                    <span class="reel-item__year">2018</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">I Want to Eat Your Pancreas</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta Vertical 5 -->
+              <article class="reel-item">
+                <img src="img/proyects/5.jpg" alt="Weathering With You" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / FANTASY</span>
+                    <span class="reel-item__year">2019</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">Weathering With You</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta Vertical 6 -->
+              <article class="reel-item">
+                <img src="img/proyects/6.jpg" alt="The Tunnel to Summer, the Exit of Goodbyes" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / SCI-FI</span>
+                    <span class="reel-item__year">2022</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">The Tunnel to Summer, the Exit of Goodbyes</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta Vertical 7 -->
+              <article class="reel-item">
+                <img src="img/proyects/7.jpg" alt="Josee, the Tiger and the Fish" class="reel-item__img" />
+                <div class="reel-item__overlay">
+                  <div class="reel-item__top">
+                    <span class="reel-item__cat">ANIME FILM / SLICE OF LIFE</span>
+                    <span class="reel-item__year">2020</span>
+                  </div>
+                  <div class="reel-item__bottom">
+                    <h3 class="reel-item__title">Josee, the Tiger and the Fish</h3>
+                    <span class="reel-item__btn" aria-hidden="true">
+                      <span class="reel-item__arrow">↗</span>
+                    </span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 3. Bloque final Verde Salvia con botón píldora "SEE THE PROJECTS" -->
+              <div class="reel-cta-block">
+                <a href="#all-projects" class="see-projects-btn">
+                  <span class="see-projects-btn__text">SEE THE PROJECTS</span>
+                  <span class="see-projects-btn__dot-wrap">
+                    <span class="see-projects-btn__dot"></span>
+                    <span class="see-projects-btn__arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                        <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                      </svg>
+                    </span>
+                  </span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Metadata horizontal original de Kiriko (visible en Fase 3, se oculta en Fase 4) -->
           <div class="project-card__content">
             <div class="project-card__meta">
               <div class="meta-mask meta-mask--left">
@@ -213,7 +359,7 @@
             </div>
           </div>
 
-          <div class="project-card__footer">
+          <div class="project-card__footer" id="kirikoFooter">
             <span class="project-card__index">03</span>
             <a href="#kiriko" class="project-card__btn" aria-label="Ver proyecto Kiriko">
               <span class="btn-arrow">↗</span>
@@ -221,11 +367,99 @@
           </div>
         </article>
 
-        <!-- Margen limpio en crema a la derecha de Pikko donde termina el scroll -->
-        <div class="end-spacer"></div>
+        <!-- =========================================================
+             PANEL EDITORIAL DERECHO FIJO ("PROJECTS SECTION" - 65vw)
+        ========================================================== -->
+        <section class="projects-editorial-panel" id="projectsEditorialPanel">
+          
+          <!-- Título Principal "Projects" bajo máscara -->
+          <div class="editorial-title-mask">
+            <h2 class="editorial-title" id="editorialProjectsTitle" data-split="chars">Projects</h2>
+          </div>
+
+          <!-- Bloque de 5 Líneas Horizontales Interactivas (00 a 04) -->
+          <div class="editorial-lines">
+            
+            <div class="editorial-row">
+              <span class="editorial-line"></span>
+              <div class="editorial-row__inner">
+                <div class="editorial-mask">
+                  <span class="editorial-num">00</span>
+                </div>
+                <div class="editorial-mask">
+                  <span class="editorial-cat">CINEMATIC ARCHIVE &amp; FILM CURATION</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="editorial-row">
+              <span class="editorial-line"></span>
+              <div class="editorial-row__inner">
+                <div class="editorial-mask">
+                  <span class="editorial-num">01</span>
+                </div>
+                <div class="editorial-mask">
+                  <span class="editorial-cat">MOTION DESIGN &amp; GSAP ANIMATIONS</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="editorial-row">
+              <span class="editorial-line"></span>
+              <div class="editorial-row__inner">
+                <div class="editorial-mask">
+                  <span class="editorial-num">02</span>
+                </div>
+                <div class="editorial-mask">
+                  <span class="editorial-cat">FRONTEND ARCHITECTURE &amp; CREATIVE CODE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="editorial-row">
+              <span class="editorial-line"></span>
+              <div class="editorial-row__inner">
+                <div class="editorial-mask">
+                  <span class="editorial-num">03</span>
+                </div>
+                <div class="editorial-mask">
+                  <span class="editorial-cat">VISUAL PACING &amp; SCROLL EXPERIENCES</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Línea 04 de cierre inferior -->
+            <div class="editorial-row editorial-row--closing">
+              <span class="editorial-line"></span>
+              <div class="editorial-row__inner">
+                <div class="editorial-mask">
+                  <span class="editorial-num">04</span>
+                </div>
+                <div class="editorial-mask">
+                  <span class="editorial-cat">INTERACTIVE DIGITAL SHOWCASE</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Párrafo Descriptivo Inferior Enmascarado -->
+          <div class="editorial-paragraph-mask">
+            <p class="editorial-paragraph" id="editorialParagraph">
+              A curated digital showcase blending cinematic storytelling with creative frontend development. Exploring smooth interactions, visual pacing, and immersive motion design to build memorable web experiences.
+            </p>
+          </div>
+
+        </section>
 
       </section>
     </div>
+
+    <!-- =========================================================
+         PANEL NEGRO DE TRANSICIÓN (100vw x 100vh)
+    ========================================================== -->
+    <section class="black-section-cover" id="blackSectionCover" aria-hidden="true"></section>
+
   </main>
 
   <!-- GSAP & ScrollTrigger CDN -->

@@ -30,6 +30,8 @@
   <!-- =========================================================
        2. ELEMENTOS FIJOS SUPERIORES (Logo Pequeño + Píldora MENU)
   ========================================================== -->
+  <!-- [AJUSTE 1] Logo fijo: letras blancas + mix-blend-mode:difference (ver style.css).
+       Ya no hay ningún cambio de color por JS. -->
   <a href="#top" class="fixed-small-logo" id="smallAkaruLogo" aria-label="Volver al inicio">
     <span class="small-char">C</span>
     <span class="small-char">E</span>
@@ -51,7 +53,7 @@
   </button>
 
   <!-- =========================================================
-       3. CONTENEDOR PRINCIPAL (Fake Horizontal Scroll)
+       3. CONTENEDOR PRINCIPAL (Fake Horizontal Scroll + Secciones)
   ========================================================== -->
   <main class="main-wrapper" id="mainWrapper">
     <div class="horizontal-track" id="horizontalTrack">
@@ -191,7 +193,7 @@
         ========================================================== -->
         <article class="project-card card--3" id="kirikoCard" style="--card-bg: #7c8f7f;">
           
-          <!-- Track vertical que sube en las Fases 4 y 6 -->
+          <!-- Track vertical con z-index superior para cubrir físicamente el área verde de Kiriko en Fase 4 -->
           <div class="vertical-reel-track" id="verticalReelTrack">
             
             <!-- 1. Imagen de Kiriko que se adapta de 66vh a 45vh y sube -->
@@ -202,7 +204,7 @@
             <!-- 2. Siete (7) tarjetas de películas verticales + Bloque verde final -->
             <div class="reel-items-group" id="reelItemsGroup">
               
-              <!-- Tarjeta Vertical 1 -->
+              <!-- Tarjeta Vertical 1 (Sube en Fase 4 cubriendo los textos de Kiriko) -->
               <article class="reel-item">
                 <img src="img/proyects/1.jpg" alt="A Silent Voice" class="reel-item__img" />
                 <div class="reel-item__overlay">
@@ -340,7 +342,7 @@
             </div>
           </div>
 
-          <!-- Metadata horizontal original de Kiriko (visible en Fase 3, se oculta en Fase 4) -->
+          <!-- Metadata inferior de Kiriko: permanece en su lugar en Fase 4 y es cubierta por "A Silent Voice" -->
           <div class="project-card__content">
             <div class="project-card__meta">
               <div class="meta-mask meta-mask--left">
@@ -456,9 +458,589 @@
     </div>
 
     <!-- =========================================================
-         PANEL NEGRO DE TRANSICIÓN (100vw x 100vh)
+         4. SECCIÓN "INDUSTRY AWARDS" (BLOQUE NEGRO - #awardsSection)
     ========================================================== -->
-    <section class="black-section-cover" id="blackSectionCover" aria-hidden="true"></section>
+    <section class="black-section-cover awards-section" id="awardsSection">
+      
+      <!-- Track vertical interno que navega de la Cabecera -> Lista 1 -> Lista 2 -->
+      <div class="awards-scroll-track" id="awardsScrollTrack">
+
+        <!-- SUBSECCIÓN A: Cabecera "Industry Awards" (100vw x 100vh) -->
+        <div class="awards-hero" id="awardsHero">
+          
+          <!-- Columna Izquierda: Título + Párrafo + Botón Píldora "EXPLORE ALL" -->
+          <div class="awards-hero__col awards-hero__col--left">
+            <div class="awards-reveal-mask">
+              <h2 class="awards-title" data-awards-reveal>Industry<br>Awards</h2>
+            </div>
+
+            <div class="awards-hero__left-bottom">
+              <div class="awards-reveal-mask">
+                <p class="awards-desc" data-awards-reveal>
+                  A curation of masterclasses in modern animation, storytelling, and sound design. Highlighting the landmark productions and creators that continue to define the medium worldwide.
+                </p>
+              </div>
+
+              <div class="awards-reveal-mask awards-reveal-mask--btn">
+                <a href="#explore-awards" class="explore-all-btn" data-awards-reveal>
+                  <span class="explore-all-btn__text">EXPLORE ALL</span>
+                  <span class="explore-all-btn__dot-wrap">
+                    <span class="explore-all-btn__dot"></span>
+                    <span class="explore-all-btn__arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                        <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                      </svg>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Central: Imagen con Parallax y Escala Progresiva -->
+          <div class="awards-hero__col awards-hero__col--center">
+            <div class="awards-hero__image-wrap" id="awardsHeroImageWrap">
+              <img src="img/proyect.jpg" alt="Industry Awards" class="awards-hero__img" id="awardsHeroImg" />
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Contadores Superiores + Párrafo Descriptivo -->
+          <div class="awards-hero__col awards-hero__col--right">
+            <div class="awards-stats">
+              <div class="awards-reveal-mask">
+                <div class="awards-stat" data-awards-reveal>
+                  <span class="awards-stat__num">10</span>
+                  <span class="awards-stat__label">ANIMATION &amp; ART</span>
+                </div>
+              </div>
+
+              <div class="awards-reveal-mask">
+                <div class="awards-stat" data-awards-reveal>
+                  <span class="awards-stat__num">8</span>
+                  <span class="awards-stat__label">ORIGINAL SOUND</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="awards-reveal-mask">
+              <p class="awards-desc awards-desc--right" data-awards-reveal>
+                Recognizing creative excellence across global releases, celebrating standout directors, composers, and animation studios shaping contemporary visual culture.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SUBSECCIÓN B: Bloque de Listas de Premios (Fase 8 y Fase 9) -->
+        <div class="awards-lists-wrapper">
+
+          <!-- LISTA 1: VISUAL & PRODUCTION (Alineada a la derecha - 68vw) -->
+          <section class="awards-list-stage" id="awardsListStage1">
+            <div class="awards-list awards-list--right" id="awardsList1">
+              <header class="awards-list__header">
+                <span class="awards-list__count">(10)</span>
+                <span class="awards-list__title">ANIMATION &amp; ART</span>
+              </header>
+
+              <div class="awards-list__rows">
+                <article class="award-row">
+                  <span class="award-row__cat">ANIME OF THE YEAR</span>
+                  <span class="award-row__work">JUJUTSU KAISEN SEASON 2</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST ANIMATION</span>
+                  <span class="award-row__work">DEMON SLAYER: ENTERTAINMENT DISTRICT ARC</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST ART DIRECTION</span>
+                  <span class="award-row__work">DEMON SLAYER: SWORDSMITH VILLAGE ARC</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST CINEMATOGRAPHY</span>
+                  <span class="award-row__work">ATTACK ON TITAN FINAL SEASON</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST DIRECTOR</span>
+                  <span class="award-row__work">SHOTA GOSHOZONO (JUJUTSU KAISEN)</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST CHARACTER DESIGN</span>
+                  <span class="award-row__work">CHAINSAW MAN</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST FILM</span>
+                  <span class="award-row__work">SUZUME</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST ACTION</span>
+                  <span class="award-row__work">JUJUTSU KAISEN SEASON 2</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST FANTASY</span>
+                  <span class="award-row__work">DEMON SLAYER: KIMETSU NO YAIBA</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST SCI-FI</span>
+                  <span class="award-row__work">CYBERPUNK: EDGERUNNERS</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <!-- LISTA 2: MUSIC & SOUND (Alineada a la izquierda - 68vw) -->
+          <section class="awards-list-stage" id="awardsListStage2">
+            <div class="awards-list awards-list--left" id="awardsList2">
+              <header class="awards-list__header">
+                <span class="awards-list__count">(8)</span>
+                <span class="awards-list__title">ORIGINAL SOUND</span>
+              </header>
+
+              <div class="awards-list__rows">
+                <article class="award-row">
+                  <span class="award-row__cat">BEST SCORE</span>
+                  <span class="award-row__work">ATTACK ON TITAN FINAL SEASON</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST OPENING THEME</span>
+                  <span class="award-row__work">"WHERE OUR BLUE IS" — TATSUYA KITANI</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST ENDING THEME</span>
+                  <span class="award-row__work">"AKARI" — SOSHI SAKAIYAMA</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST ANIME SONG</span>
+                  <span class="award-row__work">"IDOL" — YOASOBI</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST SCORE</span>
+                  <span class="award-row__work">SUZUME (RADWIMPS)</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST OPENING THEME</span>
+                  <span class="award-row__work">"KICK BACK" — KENSHI YONEZU</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row">
+                  <span class="award-row__cat">BEST ORIGINAL SCORE</span>
+                  <span class="award-row__work">CYBERPUNK: EDGERUNNERS</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+
+                <article class="award-row" id="lastAwardRow">
+                  <span class="award-row__cat">BEST ANIME SONG</span>
+                  <span class="award-row__work">"GURENGE" — LISA</span>
+                  <span class="award-row__arrow" aria-hidden="true">↗</span>
+                </article>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. SECCIÓN "EXPERTISE" (PANELES EXPANSIVOS SUPERPUESTOS)
+    ========================================================== -->
+    <section class="expertise-section" id="expertiseSection">
+
+      <!-- CAPA PERSISTENTE FIJA: Título "Expertise", Textos con Máscara, Botón Fijo y Barra 01-05 -->
+      <div class="expertise-persistent-ui">
+        
+        <!-- Título Principal Fijo en esquina superior izquierda -->
+        <div class="expertise-title-mask">
+          <h2 class="expertise-main-title" id="expertiseMainTitle" data-split="chars">Expertise</h2>
+        </div>
+
+        <!-- Contenedor de Textos de cada Slide (Posición fija independiente del botón) -->
+        <div class="expertise-texts-stage">
+          
+          <!-- Texto Slide 01 -->
+          <div class="expertise-text-item is-active" data-exp-text="0">
+            <div class="exp-mask">
+              <h3 class="expertise-item__title">Frontend Architecture</h3>
+            </div>
+            <div class="exp-mask">
+              <p class="expertise-item__tags">
+                / COMPONENT DESIGN &nbsp;&nbsp; / RESPONSIVE LAYOUTS<br>
+                / CLEAN CODE &nbsp;&nbsp; / STATE MANAGEMENT<br>
+                / PERFORMANCE &nbsp;&nbsp; / MODERN CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Texto Slide 02 -->
+          <div class="expertise-text-item" data-exp-text="1">
+            <div class="exp-mask">
+              <h3 class="expertise-item__title">Creative Interaction</h3>
+            </div>
+            <div class="exp-mask">
+              <p class="expertise-item__tags">
+                / GSAP ANIMATIONS &nbsp;&nbsp; / SCROLL TRIGGER<br>
+                / MICRO-INTERACTIONS &nbsp;&nbsp; / SMOOTH SCROLL<br>
+                / TRANSITIONS &nbsp;&nbsp; / UI DYNAMICS
+              </p>
+            </div>
+          </div>
+
+          <!-- Texto Slide 03 -->
+          <div class="expertise-text-item" data-exp-text="2">
+            <div class="exp-mask">
+              <h3 class="expertise-item__title">Web Development</h3>
+            </div>
+            <div class="exp-mask">
+              <p class="expertise-item__tags">
+                / SEMANTIC HTML &nbsp;&nbsp; / JAVASCRIPT ES6+<br>
+                / ASYNC WORKFLOWS &nbsp;&nbsp; / ACCESSIBILITY<br>
+                / CROSS-BROWSER &nbsp;&nbsp; / ASSET OPTIMIZATION
+              </p>
+            </div>
+          </div>
+
+          <!-- Texto Slide 04 -->
+          <div class="expertise-text-item" data-exp-text="3">
+            <div class="exp-mask">
+              <h3 class="expertise-item__title">Interface Design</h3>
+            </div>
+            <div class="exp-mask">
+              <p class="expertise-item__tags">
+                / MINIMALIST AESTHETIC &nbsp;&nbsp; / TYPOGRAPHY<br>
+                / COLOR HARMONY &nbsp;&nbsp; / VISUAL HIERARCHY<br>
+                / WIREFRAMING &nbsp;&nbsp; / PROTOTYPING
+              </p>
+            </div>
+          </div>
+
+          <!-- Texto Slide 05 -->
+          <div class="expertise-text-item" data-exp-text="4">
+            <div class="exp-mask">
+              <h3 class="expertise-item__title">Digital Experience</h3>
+            </div>
+            <div class="exp-mask">
+              <p class="expertise-item__tags">
+                / INTERACTIVE SHOWCASES &nbsp;&nbsp; / STORYTELLING<br>
+                / MEDIA CURATION &nbsp;&nbsp; / SMOOTH DEPLOYMENT<br>
+                / CODE REFINEMENT &nbsp;&nbsp; / INNOVATION
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Botón Píldora Anclado a Altura Fija Absoluta (bottom: 24vh) -->
+        <div class="expertise-cta-fixed">
+          <a href="#see-expertise" class="see-projects-btn expertise-pill-btn">
+            <span class="see-projects-btn__text">SEE EXPERTISE</span>
+            <span class="see-projects-btn__dot-wrap">
+              <span class="see-projects-btn__dot"></span>
+              <span class="see-projects-btn__arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                  <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                </svg>
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <!-- Barra de Progreso Inferior Fija (01 a 05) -->
+        <div class="expertise-progress">
+          <div class="expertise-progress__steps">
+            <div class="exp-step is-active" data-exp-step="0">
+              <span class="exp-step__num">01</span>
+              <span class="exp-step__label-mask">
+                <span class="exp-step__label">FRONTEND ARCHITECTURE</span>
+              </span>
+            </div>
+            <div class="exp-step" data-exp-step="1">
+              <span class="exp-step__num">02</span>
+              <span class="exp-step__label-mask">
+                <span class="exp-step__label">CREATIVE INTERACTION</span>
+              </span>
+            </div>
+            <div class="exp-step" data-exp-step="2">
+              <span class="exp-step__num">03</span>
+              <span class="exp-step__label-mask">
+                <span class="exp-step__label">WEB DEVELOPMENT</span>
+              </span>
+            </div>
+            <div class="exp-step" data-exp-step="3">
+              <span class="exp-step__num">04</span>
+              <span class="exp-step__label-mask">
+                <span class="exp-step__label">INTERFACE DESIGN</span>
+              </span>
+            </div>
+            <div class="exp-step" data-exp-step="4">
+              <span class="exp-step__num">05</span>
+              <span class="exp-step__label-mask">
+                <span class="exp-step__label">DIGITAL EXPERIENCE</span>
+              </span>
+            </div>
+          </div>
+          <div class="expertise-progress__track">
+            <div class="expertise-progress__bar" id="expertiseProgressBar"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CAPAS DE SLIDES SUPERPUESTOS (01 a 05) -->
+      <div class="expertise-slides-wrapper">
+        
+        <!-- Slide 01: Beige / Crema Pastel -->
+        <article class="expertise-slide exp-slide--1" style="--exp-bg: #f4eee9; z-index: 11;">
+          <div class="expertise-slide__img-wrap">
+            <img src="img/expertise/1.jpg" alt="Frontend Architecture" class="expertise-slide__img" />
+          </div>
+        </article>
+
+        <!-- Slide 02: Malva / Morado Empolvado -->
+        <article class="expertise-slide exp-slide--2" style="--exp-bg: #b597a3; z-index: 12;">
+          <div class="expertise-slide__img-wrap">
+            <img src="img/expertise/2.jpg" alt="Creative Interaction" class="expertise-slide__img" />
+          </div>
+        </article>
+
+        <!-- Slide 03: Verde Salvia -->
+        <article class="expertise-slide exp-slide--3" style="--exp-bg: #7c8f7f; z-index: 13;">
+          <div class="expertise-slide__img-wrap">
+            <img src="img/expertise/3.jpg" alt="Web Development" class="expertise-slide__img" />
+          </div>
+        </article>
+
+        <!-- Slide 04: Blanco / Crema Limpio -->
+        <article class="expertise-slide exp-slide--4" style="--exp-bg: #ffffff; z-index: 14;">
+          <div class="expertise-slide__img-wrap">
+            <img src="img/expertise/4.jpg" alt="Interface Design" class="expertise-slide__img" />
+          </div>
+        </article>
+
+        <!-- Slide 05: Terracota / Naranja Cálido -->
+        <article class="expertise-slide exp-slide--5" style="--exp-bg: #d97843; z-index: 15;">
+          <div class="expertise-slide__img-wrap">
+            <img src="img/expertise/5.jpg" alt="Digital Experience" class="expertise-slide__img" />
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. SECCIÓN "ABOUT" (AGENCY & CREATIVE DEVELOPER)
+    ========================================================== -->
+    <section class="about-section" id="aboutSection">
+      <div class="about-scroll-track" id="aboutScrollTrack">
+
+        <!-- A. Cabecera Editorial -->
+        <header class="about-header">
+          <div class="about-header__left">
+            <div class="about-title-mask">
+              <h2 class="about-main-title" id="aboutMainTitle" data-split="chars">About</h2>
+            </div>
+          </div>
+
+          <div class="about-header__right">
+            <div class="about-reveal-mask">
+              <span class="about-kicker" data-about-reveal>CREATIVE DEVELOPER — BUENOS AIRES</span>
+            </div>
+            <div class="about-reveal-mask">
+              <p class="about-lead" data-about-reveal>
+                Focused on crafting fluid, interactive web experiences where technical precision meets contemporary digital aesthetics. Every interface is built with clarity, rhythm, and attention to detail.
+              </p>
+            </div>
+            <div class="about-reveal-mask about-reveal-mask--btn">
+              <a href="#projects" class="see-projects-btn" data-about-reveal>
+                <span class="see-projects-btn__text">VIEW WORK</span>
+                <span class="see-projects-btn__dot-wrap">
+                  <span class="see-projects-btn__dot"></span>
+                  <span class="see-projects-btn__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                      <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <!-- B. Grid Asimétrico Superior (Imágenes 1, 2 y 3) -->
+        <div class="about-gallery-top">
+          <!-- Imagen 1: Grande vertical izquierda -->
+          <div class="about-img-box about-img-box--1">
+            <img src="img/agency/1.jpg" alt="Creative Developer Studio 1" class="about-img" />
+          </div>
+
+          <!-- Columna derecha: Imagen 2 (arriba) e Imagen 3 (debajo) -->
+          <div class="about-gallery-top__right">
+            <div class="about-img-box about-img-box--2">
+              <img src="img/agency/2.jpg" alt="Creative Developer Studio 2" class="about-img" />
+            </div>
+            <div class="about-img-box about-img-box--3">
+              <img src="img/agency/3.jpg" alt="Creative Developer Studio 3" class="about-img" />
+            </div>
+          </div>
+        </div>
+
+        <!-- C. Bloque Inferior: Filosofía (3 Filas) + Imagen 4 + Años 2023 / 2026 -->
+        <div class="about-bottom-grid">
+          
+          <!-- 3 Bloques de Filosofía alineados a la izquierda -->
+          <div class="about-philosophy">
+            <article class="philosophy-row">
+              <h3 class="philosophy-row__title">WE LIKE TO KEEP THINGS<br>SIMPLE.</h3>
+              <p class="philosophy-row__desc">
+                In an era of overloaded interfaces, clarity and purpose take precedence. Clean code and intentional motion always outperform needless complexity.
+              </p>
+            </article>
+
+            <article class="philosophy-row">
+              <h3 class="philosophy-row__title">GO WITH COMMON SENSE.</h3>
+              <p class="philosophy-row__desc">
+                Master modern tools and reactive patterns to build anything, but deploy only what makes the experience feel lighter, sharper, and frictionless.
+              </p>
+            </article>
+
+            <article class="philosophy-row">
+              <h3 class="philosophy-row__title">USER FIRST,<br>ALWAYS.</h3>
+              <p class="philosophy-row__desc">
+                Visual style sets the mood, but performance and accessibility define the real quality. The user's interaction is the final metric.
+              </p>
+            </article>
+          </div>
+
+          <!-- Columna derecha: Imagen 4 + Display de Años 2023 / 2026 -->
+          <div class="about-bottom-right">
+            <div class="about-img-box about-img-box--4">
+              <img src="img/agency/4.jpg" alt="Creative Developer Studio 4" class="about-img" />
+            </div>
+
+            <div class="about-years" aria-label="2023 a 2026">
+              <span class="about-years__top">2023</span>
+              <span class="about-years__bottom">/ 2026</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. SECCIÓN FINAL: FOOTER, CONTACTO Y LOGO COLOSAL "CELONOR"
+    ========================================================== -->
+    <footer class="contact-section" id="contactSection">
+      <div class="contact-scroll-track" id="contactScrollTrack">
+
+        <!-- A. Cabecera de Contacto (Full Screen Oscuro #0d0d0d) -->
+        <div class="contact-hero">
+          <div class="contact-reveal-mask">
+            <h2 class="contact-title" data-contact-reveal>
+              I challenge you to<br>challenge me.
+            </h2>
+          </div>
+
+          <div class="contact-reveal-mask contact-reveal-mask--btn">
+            <a href="mailto:marcelo.orozco.toledo@gmail.com" class="explore-all-btn contact-cta-btn" data-contact-reveal>
+              <span class="explore-all-btn__text">CONTACT US</span>
+              <span class="explore-all-btn__dot-wrap">
+                <span class="explore-all-btn__dot"></span>
+                <span class="explore-all-btn__arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                    <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                  </svg>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- B. Grid de Datos de Contacto (4 Columnas con Micro-interacciones) -->
+        <div class="contact-info-bar">
+          
+          <!-- Columna 1: Ubicación (Hover grupal cambia todo el bloque a naranja) -->
+          <div class="contact-col contact-col--location">
+            <p class="contact-location-line">C.A.B.A.</p>
+            <p class="contact-location-line">Buenos Aires, Argentina</p>
+          </div>
+
+          <!-- Columna 2: Contacto Directo (Hover granular individual) -->
+          <div class="contact-col contact-col--direct">
+            <a href="mailto:marcelo.orozco.toledo@gmail.com" class="contact-direct-link">
+              marcelo.orozco.toledo@gmail.com
+            </a>
+            <a href="tel:+541131991066" class="contact-direct-link contact-direct-link--phone">
+              +54 11 3199-1066
+            </a>
+          </div>
+
+          <!-- Columna 3: Redes Sociales (Hover individual a naranja) -->
+          <div class="contact-col contact-col--socials">
+            <a href="#instagram" class="contact-social-link">INSTAGRAM</a>
+            <a href="#linkedin" class="contact-social-link">LINKEDIN</a>
+            <a href="#twitter" class="contact-social-link">TWITTER</a>
+            <a href="#facebook" class="contact-social-link">FACEBOOK</a>
+          </div>
+
+          <!-- Columna 4: Legal y Copyright (Neutro sin cambio de color en hover) -->
+          <div class="contact-col contact-col--legal">
+            <!-- [AJUSTE 6] Ahora es un enlace interactivo (hover naranja); el copyright sigue neutro -->
+            <a href="#legal-notice" class="contact-legal-text contact-legal-link">LEGAL NOTICE</a>
+            <span class="contact-legal-text contact-legal-text--copy">CELONOR © 2026</span>
+          </div>
+
+        </div>
+
+        <!-- C. Cierre Monumental: Logo Colosal "CELONOR" -->
+        <div class="contact-giant-logo-wrap">
+          <div class="contact-giant-logo" id="contactGiantLogo" aria-label="CELONOR">
+            <span>C</span>
+            <span>E</span>
+            <span>L</span>
+            <span>O</span>
+            <span>N</span>
+            <span>O</span>
+            <span>R</span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
 
   </main>
 

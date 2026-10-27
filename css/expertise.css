@@ -1,0 +1,511 @@
+/* ==========================================================================
+   RESET Y VARIABLES BASE
+   ========================================================================== */
+:root {
+  --bg-cream: #f0ede6;
+  --text-dark: #141413;
+  --accent-blue: #c1ccd7;
+  --accent-orange: #d97843;
+  --accent-purple: #6c63ff;
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Anton', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.overflow-mask {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   BLOQUE 1: HERO / HEADLINE INTRODUCTORIO
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 110px 32px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Círculos de fondo como en el diseño original */
+.hero-circles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.circle-blue {
+  width: 58vw;
+  height: 58vw;
+  background-color: var(--accent-blue);
+  top: -18vw;
+  left: 25vw;
+}
+
+.circle-orange {
+  width: 44vw;
+  height: 44vw;
+  background-color: var(--accent-orange);
+  top: 14vw;
+  right: 7vw;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 12px;
+}
+
+.hero-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 12px;
+}
+
+.hero-title {
+  font-size: clamp(4.5rem, 13.5vw, 15rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.hero-sub-right {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: right;
+  max-width: 240px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.hero-sub-left {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  max-width: 240px;
+  line-height: 1.4;
+  margin-top: 14px;
+}
+
+.hero-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--text-dark);
+  transform-origin: left center;
+}
+
+.hero-intro-wrap {
+  margin-top: 56px;
+  max-width: 96%;
+}
+
+.hero-paragraph {
+  font-size: clamp(1.6rem, 3.3vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+
+/* ==========================================================================
+   GALERÍA ASIMÉTRICA PRE-SKILLS
+   ========================================================================== */
+.showcase-split {
+  padding: 60px 32px 40px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.showcase-left .showcase-big {
+  width: 88%;
+  aspect-ratio: 1 / 1.05;
+  overflow: hidden;
+}
+
+.showcase-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+  margin-top: 280px;
+}
+
+.showcase-right .showcase-small {
+  width: 55%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   BLOQUE 2: SKILLS (3 COLUMNAS)
+   ========================================================================== */
+.skills-section {
+  padding: 40px 32px 130px;
+}
+
+.skills-header {
+  margin-bottom: 90px;
+}
+
+.skills-main-title {
+  font-size: clamp(4rem, 8.5vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-left: 6vw;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.skill-col-header {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.skill-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #5846f6;
+}
+
+.skill-title {
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.skill-list {
+  padding-left: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skill-list li {
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   RULETA AUTOMÁTICA DE 9 IMÁGENES
+   ========================================================================== */
+.roulette-section {
+  padding-top: 20px;
+  user-select: none;
+  pointer-events: none; /* El usuario no puede arrastrarla manualmente */
+}
+
+.roulette-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.roulette-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  will-change: transform;
+}
+
+.roulette-item {
+  width: 24vw;
+  min-width: 280px;
+  aspect-ratio: 1 / 1.05;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.roulette-caption-bar {
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--text-dark);
+}
+
+.roulette-caption-bar p {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  max-width: 290px;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   BLOQUE 3: MANIFIESTO PRE-EXPERTISE (EDITORIAL + ANIMACIÓN RODILLO)
+   ========================================================================== */
+.manifesto-section {
+  padding: 110px 32px 140px;
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Composición de 3 cajas estilo contador mecánico */
+.manifesto-monogram-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-left: 1vw;
+}
+
+.mono-box {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.mono-box-small {
+  width: 56px;
+  height: 92px;
+  background-color: var(--text-dark);
+  color: var(--bg-cream);
+}
+
+.mono-box-main {
+  width: 270px;
+  height: 440px;
+  border: 1px solid var(--text-dark);
+  background-color: transparent;
+  color: var(--text-dark);
+}
+
+.mono-box-right {
+  width: 138px;
+  height: 225px;
+  background-color: var(--text-dark);
+  color: var(--bg-cream);
+  align-self: flex-end;
+}
+
+.mono-roller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-display);
+  line-height: 1;
+  will-change: transform;
+}
+
+.mono-box-small .mono-roller span {
+  font-size: 4.5rem;
+  height: 92px;
+  display: flex;
+  align-items: center;
+}
+
+.mono-box-main .mono-roller span {
+  font-size: 21rem;
+  height: 440px;
+  display: flex;
+  align-items: center;
+}
+
+.mono-box-right .mono-roller span {
+  font-size: 10.5rem;
+  height: 225px;
+  display: flex;
+  align-items: center;
+}
+
+.manifesto-paragraph {
+  font-size: clamp(1.75rem, 3.15vw, 3.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+/* ==========================================================================
+   BLOQUE 4: EXPERTISE (SLIDER INTERACTIVO DE 5 SLIDES CON PIN)
+   ========================================================================== */
+.expertise-pin-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.expertise-slides-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.exp-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 70px 48px 0;
+  will-change: clip-path;
+}
+
+.slide-1 { z-index: 1; }
+.slide-2 { z-index: 2; }
+.slide-3 { z-index: 3; }
+.slide-4 { z-index: 4; }
+.slide-5 { z-index: 5; }
+
+.exp-main-heading {
+  text-align: center;
+  font-size: clamp(3.8rem, 8.2vw, 8.8rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-top: 10px;
+}
+
+.exp-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 34vw 1fr;
+  align-items: center;
+  gap: 32px;
+  height: calc(100vh - 210px);
+}
+
+.exp-left {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  padding-left: 1vw;
+}
+
+.exp-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.exp-title {
+  font-size: clamp(1.5rem, 2.3vw, 2.45rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.exp-center {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.exp-img-container {
+  width: 100%;
+  height: 92%;
+  overflow: hidden;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+.exp-right {
+  padding-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 38px;
+}
+
+.exp-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-tags li {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* (Los botones SEE EXPERTISE usan la píldora maestra .see-projects-btn de style.css) */
+
+/* ==========================================================================
+   RESPONSIVE
+   (El header, el menú y el footer vienen del maestro: css/style.css)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+  .exp-content-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+  .exp-center {
+    max-width: 340px;
+    height: 320px;
+  }
+}

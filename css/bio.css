@@ -1,0 +1,933 @@
+/* ==========================================================================
+   VARIABLES & RESET — CELONOR BIO PAGE
+   ========================================================================== */
+:root {
+  --bg-light: #f4f3ef;
+  --bg-white: #ffffff;
+  --text-dark: #0e0e0e;
+  --text-muted: #5a5a5a;
+  --border-subtle: rgba(14, 14, 14, 0.14);
+
+  /* Colores por categoría */
+  --cat-miniseries: #c1ccd7;
+  --cat-series: #849687;
+  --cat-cortos: #b597a3;
+  --cat-peliculas: #e67e51;
+
+  /* Color activo dinámico (cambia por JS según la obra) */
+  --theme-color: #c1ccd7;
+
+  /* Fuentes */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Antonio', Impact, sans-serif;
+
+  /* Espaciados */
+  --pad-x: clamp(1.5rem, 3.8vw, 4.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-light);
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   1. TELONES DE ENTRADA Y SALIDA (TRANSICIÓN VIDEO AKARU)
+   ========================================================================== */
+.page-veil {
+  position: fixed;
+  inset: 0;
+  background-color: #0e0e0e;
+  z-index: 9000;
+  pointer-events: none;
+}
+
+.exit-curtain {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  background-color: #0e0e0e;
+  z-index: 8500;
+  transform: translateY(100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.exit-curtain__logo {
+  display: inline-flex;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  overflow: hidden;
+  padding: 0.2em 0.1em;
+}
+
+.exit-char {
+  display: inline-block;
+  transform: translateY(120%);
+}
+
+/* ==========================================================================
+   2. NAVEGACIÓN FIJA SUPERIOR Y OVERLAY DE MENÚ
+   ========================================================================== */
+.site-logo {
+  position: fixed;
+  top: clamp(1.25rem, 2.5vw, 2.25rem);
+  left: var(--pad-x);
+  z-index: 6000;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  color: var(--text-dark);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.site-logo:hover {
+  transform: scale(1.03);
+}
+
+.menu-pill {
+  position: fixed;
+  top: clamp(1.25rem, 2.5vw, 2.25rem);
+  right: var(--pad-x);
+  z-index: 6000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  background-color: #0e0e0e;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.55rem 0.45rem 1.25rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+}
+
+.menu-pill:hover {
+  transform: scale(1.04);
+}
+
+.menu-pill__circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--theme-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.4s ease, transform 0.3s ease;
+}
+
+.hamburger {
+  width: 12px;
+  height: 8px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 1.8px;
+  background-color: #0e0e0e;
+  transition: transform 0.3s ease;
+}
+
+.menu-pill.is-open .hamburger span:nth-child(1) {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.menu-pill.is-open .hamburger span:nth-child(2) {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+/* OVERLAY FULLSCREEN */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #0e0e0e;
+  color: #f4f3ef;
+  z-index: 5500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 2.5vw, 2.25rem) var(--pad-x);
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+  transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.menu-overlay.is-open {
+  clip-path: inset(0 0 0% 0);
+  pointer-events: auto;
+}
+
+.menu-overlay__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-overlay__static-logo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 0.85;
+}
+
+.menu-overlay__top-right {
+  margin-right: 7.5rem;
+}
+
+.menu-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+}
+
+.menu-lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.menu-lang-btn.is-active {
+  color: #ffffff;
+}
+
+.menu-overlay__content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: auto 0;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.menu-nav__mask {
+  overflow: hidden;
+}
+
+.menu-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  transition: transform 0.35s ease, color 0.35s ease;
+}
+
+.menu-nav__link:hover {
+  transform: translateX(14px);
+  color: var(--theme-color);
+}
+
+.menu-nav__arrow {
+  width: 0.65em;
+  height: 0.65em;
+  display: inline-flex;
+}
+
+.menu-nav__arrow svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  fill: none;
+}
+
+.menu-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.menu-info-location__line,
+.menu-info-socials li {
+  line-height: 1.7;
+}
+
+.menu-info-link {
+  transition: opacity 0.25s ease;
+}
+
+.menu-info-link:hover {
+  opacity: 0.65;
+}
+
+.menu-overlay__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.menu-overlay__card-frame {
+  width: 180px;
+  height: 110px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.menu-overlay__giant-mask {
+  overflow: hidden;
+}
+
+.menu-overlay__giant-logo {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 11vw, 10rem);
+  line-height: 0.78;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   3. HERO DE LA OBRA (COLOR TEMÁTICO DINÁMICO + IMAGEN 1)
+   ========================================================================== */
+.bio-hero {
+  background-color: var(--theme-color);
+  padding: clamp(6.5rem, 11vw, 9.5rem) var(--pad-x) clamp(2.5rem, 5vw, 4.5rem);
+  transition: background-color 0.6s ease;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bio-hero__top {
+  max-width: 1680px;
+  margin: 0 auto 2.5rem;
+}
+
+.bio-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(14, 14, 14, 0.2);
+  margin-bottom: 2rem;
+}
+
+.bio-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(14, 14, 14, 0.35);
+  border-radius: 999px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bio-back-link:hover {
+  background-color: #0e0e0e;
+  color: #ffffff;
+}
+
+.bio-hero__badges {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.bio-badge-cat,
+.bio-badge-year,
+.bio-badge-index {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.38rem 0.9rem;
+  border-radius: 999px;
+}
+
+.bio-badge-cat {
+  background-color: #0e0e0e;
+  color: #ffffff;
+}
+
+.bio-badge-year {
+  border: 1px solid rgba(14, 14, 14, 0.4);
+}
+
+.bio-badge-index {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.bio-hero__title-wrap {
+  overflow: hidden;
+}
+
+.bio-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 9.2vw, 9.8rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+}
+
+.bio-hero__FullMedia {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.bio-hero__img-frame {
+  width: 100%;
+  height: clamp(340px, 64vh, 760px);
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+  background-color: #161616;
+}
+
+.bio-hero__img {
+  transform: scale(1.08);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   4. SECCIÓN EDITORIAL (FICHA TÉCNICA + ORIGEN Y PRODUCCIÓN + IMAGEN 2)
+   ========================================================================== */
+.bio-editorial {
+  padding: clamp(4rem, 8vw, 8rem) var(--pad-x);
+  max-width: 1680px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bio-editorial__grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.45fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.bio-credits__sticky {
+  position: sticky;
+  top: 6.5rem;
+  background-color: var(--bg-white);
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  border: 1px solid var(--border-subtle);
+  border-top: 5px solid var(--theme-color);
+}
+
+.bio-section-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.bio-credits__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bio-credits__item {
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bio-credits__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.bio-credits__dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.bio-credits__dd {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-dark);
+}
+
+.bio-text-block {
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+.bio-text-block__heading {
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin-bottom: 1.5rem;
+}
+
+.bio-text-block__paragraph {
+  font-size: clamp(1.05rem, 1.35vw, 1.28rem);
+  line-height: 1.72;
+  color: #222222;
+  font-weight: 300;
+}
+
+.bio-figure-secondary__mask {
+  width: 100%;
+  height: clamp(280px, 46vh, 540px);
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.bio-figure-secondary__caption {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   5. PROCESO DE CREACIÓN + GALERÍA ASIMÉTRICA (IMAGEN 3 E IMAGEN 4)
+   ========================================================================== */
+.bio-process {
+  padding: clamp(4rem, 8vw, 8rem) var(--pad-x);
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.bio-process__header {
+  max-width: 900px;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.bio-process__title {
+  font-size: clamp(2.1rem, 4vw, 3.8rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.bio-process__text-wrap {
+  max-width: 920px;
+  margin-left: auto;
+  margin-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  padding-left: clamp(1.25rem, 3vw, 2.5rem);
+  border-left: 3px solid var(--theme-color);
+}
+
+.bio-process__paragraph {
+  font-size: clamp(1.1rem, 1.45vw, 1.35rem);
+  line-height: 1.75;
+  font-weight: 300;
+  color: #1c1c1c;
+}
+
+.bio-process__dual-gallery {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.bio-card-visual__frame {
+  overflow: hidden;
+  background-color: #141414;
+}
+
+.bio-card-visual--large .bio-card-visual__frame {
+  height: clamp(320px, 54vh, 640px);
+}
+
+.bio-card-visual--offset {
+  margin-top: clamp(2rem, 8vw, 7rem);
+}
+
+.bio-card-visual--offset .bio-card-visual__frame {
+  height: clamp(280px, 44vh, 500px);
+}
+
+.bio-card-visual__meta {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   6. SHOWCASE HORIZONTAL DE 5 PANELES (COMO EN EL VIDEO 00:00)
+   ========================================================================== */
+.bio-showcase {
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.bio-showcase__pin {
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.bio-showcase__track {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  will-change: transform;
+}
+
+.showcase-panel {
+  flex-shrink: 0;
+  height: 100%;
+  border-right: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.showcase-panel--hero {
+  width: clamp(520px, 62vw, 1020px);
+}
+
+.showcase-panel--card {
+  width: clamp(320px, 32vw, 520px);
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.showcase-panel__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-panel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.showcase-panel__media:hover .showcase-panel__img {
+  transform: scale(1.05);
+}
+
+.showcase-panel__giant-title {
+  position: absolute;
+  left: clamp(1.5rem, 3vw, 3rem);
+  bottom: clamp(1.5rem, 3vw, 2.75rem);
+  right: clamp(1.5rem, 3vw, 3rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.2vw, 6.4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 6px 28px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.showcase-panel__inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.showcase-panel__thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--theme-color);
+}
+
+.showcase-panel__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   7. SECCIÓN FINAL DEL VIDEO: BARRA "Projects⁰" + FOOTER MONUMENTAL
+      CON LETRAS ENTRECORTADAS ABAJO
+   ========================================================================== */
+.scroll-outro {
+  position: relative;
+  background-color: var(--bg-white);
+}
+
+.projects-scroll-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 2.8vw, 2.6rem) clamp(2rem, 8vw, 9rem);
+  background-color: #f4f3ef;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.projects-scroll-bar__hint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+}
+
+.projects-scroll-bar__center {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.2rem;
+  transition: transform 0.3s ease;
+}
+
+.projects-scroll-bar__center:hover {
+  transform: scale(1.03);
+}
+
+.projects-scroll-bar__word {
+  font-size: clamp(2.8rem, 5.2vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-dark);
+}
+
+.projects-scroll-bar__count {
+  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1;
+  margin-top: 0.25rem;
+  color: var(--text-dark);
+}
+
+/* FOOTER MONUMENTAL INVERTIDO CON COLOR TEMÁTICO Y PALABRA ENTRECORTADA */
+.footer-inverted {
+  background-color: var(--theme-color);
+  color: #0e0e0e;
+  padding-top: clamp(2.2rem, 4vw, 3.6rem);
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+}
+
+.footer-inverted__top {
+  display: grid;
+  grid-template-columns: 1.2fr 1.3fr 1fr 0.8fr;
+  gap: 2rem;
+  padding: 0 var(--pad-x) clamp(2rem, 3.5vw, 3.2rem);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footer-line {
+  display: block;
+  line-height: 1.55;
+}
+
+.footer-col--contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.footer-social-list li {
+  line-height: 1.55;
+}
+
+.footer-col--legal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.footer-interactive {
+  transition: opacity 0.25s ease;
+}
+
+.footer-interactive:hover {
+  opacity: 0.55;
+}
+
+.footer-inverted__divider {
+  width: calc(100% - (var(--pad-x) * 2));
+  margin: 0 auto;
+  height: 1px;
+  background-color: rgba(14, 14, 14, 0.35);
+}
+
+/* Contenedor que recorta la parte inferior de las letras gigantes como en el video */
+.footer-inverted__monumental {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 var(--pad-x);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer-inverted__giant-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 26.5vw, 34rem);
+  font-weight: 700;
+  line-height: 0.74;
+  letter-spacing: -0.03em;
+  color: #0e0e0e;
+  text-transform: uppercase;
+  transform: translateY(16%);
+  user-select: none;
+}
+
+.footer-inverted__giant-text span {
+  display: inline-block;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .bio-editorial__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bio-credits__sticky {
+    position: static;
+  }
+
+  .bio-process__dual-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .bio-card-visual--offset {
+    margin-top: 0;
+  }
+
+  .footer-inverted__top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-col--legal {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-overlay__content {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-scroll-bar {
+    padding: 1.5rem var(--pad-x);
+  }
+
+  .projects-scroll-bar__hint {
+    display: none;
+  }
+
+  .projects-scroll-bar {
+    justify-content: center;
+  }
+
+  .footer-inverted__top {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .showcase-panel--hero {
+    width: 88vw;
+  }
+
+  .showcase-panel--card {
+    width: 72vw;
+  }
+}

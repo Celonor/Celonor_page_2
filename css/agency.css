@@ -1,0 +1,839 @@
+/* ==========================================================================
+   VARIABLES & RESET
+   ========================================================================== */
+:root {
+  --bg-cream: #f3f1ed;
+  --bg-black: #0e0e0e;
+  --bg-mauve: #b99ba5;
+  --bg-footer: #cad2db;
+
+  --text-dark: #0e0e0e;
+  --text-light: #f3f1ed;
+  --text-muted-dark: rgba(14, 14, 14, 0.68);
+  --text-muted-light: rgba(243, 241, 237, 0.72);
+
+  --accent-orange: #d9825b;
+  --border-dark: rgba(14, 14, 14, 0.25);
+  --border-light: rgba(243, 241, 237, 0.22);
+  --border-grid-black: #242424;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-condensed: 'Anton', Impact, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-cream);
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   COMMON CONTAINERS
+   ========================================================================== */
+.section-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+
+.u-underline {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   BLOQUE 1: HERO SECTION
+   ========================================================================== */
+.hero-section {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  padding-top: 6.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2.4rem 5rem;
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  margin-left: 6vw;
+  color: var(--text-muted-dark);
+}
+
+.hero-stage {
+  position: relative;
+  min-height: 112vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Tipografía gigante del Hero */
+.hero-display {
+  font-size: clamp(4.2rem, 12.2vw, 13.5rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--text-dark);
+}
+
+.hero-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Líneas finas horizontales debajo de cada palabra del título */
+.hero-rule {
+  height: 1px;
+  background-color: var(--text-dark);
+  margin-top: 1.35rem;
+}
+
+.hero-rule--left {
+  width: clamp(260px, 42vw, 680px);
+}
+
+.hero-rule--right {
+  width: clamp(260px, 42vw, 680px);
+  margin-left: auto;
+}
+
+.hero-rule--bottom {
+  width: clamp(280px, 48vw, 760px);
+}
+
+/* Fila superior: "We craft" + Párrafo derecha */
+.hero-row--top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 5.5vw;
+  gap: 2rem;
+}
+
+.hero-lead {
+  max-width: 340px;
+  margin-top: 6.8rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.48;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--text-dark);
+}
+
+/* Imagen 1: Central vertical grande */
+.hero-media--center {
+  position: absolute;
+  top: 21%;
+  left: 49.5%;
+  transform: translateX(-50%);
+  width: clamp(270px, 30.5vw, 490px);
+  aspect-ratio: 3 / 4.3;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Fila media: "fluid web" a la derecha */
+.hero-row--middle {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3.5vw;
+  margin-top: 6vh;
+}
+
+/* Fila inferior: Imagen 2 (izq) + "experiences" + Imagen 3 (der) */
+.hero-row--bottom {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 180px 1fr 270px;
+  align-items: end;
+  gap: 2rem;
+  margin-top: 10vh;
+}
+
+.hero-media--left {
+  width: clamp(135px, 12.5vw, 195px);
+  aspect-ratio: 3 / 4.2;
+  overflow: hidden;
+}
+
+.hero-title-group--bottom {
+  justify-self: center;
+  margin-bottom: 1.2rem;
+}
+
+.hero-media--right {
+  width: clamp(200px, 18vw, 285px);
+  aspect-ratio: 16 / 10;
+  justify-self: end;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   BLOQUE 2: MARQUEE / TICKER CONTINUO
+   ========================================================================== */
+.marquee-bar {
+  width: 100%;
+  background-color: var(--bg-cream);
+  border-top: 1px solid rgba(14, 14, 14, 0.12);
+  padding: 1.35rem 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 4;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeRollLeft 26s linear infinite;
+  will-change: transform;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  font-size: clamp(1.1rem, 1.55vw, 1.45rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  padding: 0 2.4rem;
+  white-space: nowrap;
+}
+
+.marquee-star {
+  font-size: 1.65rem;
+  line-height: 1;
+  color: var(--accent-orange);
+  display: inline-block;
+  transform: translateY(2px);
+}
+
+@keyframes marqueeRollLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   BLOQUE 3: MANIFIESTO & FILOSOFÍA (3 PILARES)
+   ========================================================================== */
+.manifesto-section {
+  background-color: var(--bg-black);
+  color: var(--text-light);
+  padding: 4.5rem 0 8rem;
+}
+
+.manifesto-topbar {
+  border-top: 1px solid var(--border-light);
+  padding-top: 1.5rem;
+  margin-bottom: 5.5rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.6fr;
+  gap: 1.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.manifesto-kicker-col--right {
+  text-align: right;
+}
+
+.manifesto-headline {
+  font-size: clamp(2.1rem, 4.4vw, 4.35rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  max-width: 1420px;
+  margin-bottom: 6.5rem;
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+.manifesto-visuals {
+  display: grid;
+  grid-template-columns: 1fr 0.39fr;
+  gap: 1.15rem;
+  align-items: end;
+}
+
+.manifesto-img--large {
+  aspect-ratio: 3 / 4.1;
+  overflow: hidden;
+}
+
+.manifesto-img--small {
+  aspect-ratio: 3 / 3.9;
+  overflow: hidden;
+}
+
+.manifesto-pillars {
+  border-top: 1px solid var(--border-light);
+}
+
+.pillar-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.8rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.pillar-asterisk {
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-light);
+  transition: transform 0.5s var(--ease-out-expo), color 0.3s ease;
+  transform-origin: center;
+  width: fit-content;
+}
+
+.pillar-row:hover .pillar-asterisk {
+  transform: rotate(90deg);
+  color: var(--accent-orange);
+}
+
+.pillar-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+  color: var(--text-light);
+}
+
+.pillar-text {
+  font-size: clamp(0.95rem, 1.15vw, 1.12rem);
+  line-height: 1.45;
+  color: var(--text-muted-light);
+  max-width: 460px;
+}
+
+/* ==========================================================================
+   BLOQUE 4: TEAM / DISCIPLINES & CORE FOCUS
+   ========================================================================== */
+.disciplines-section {
+  background-color: var(--bg-mauve);
+  color: var(--text-dark);
+  padding-top: 7.5rem;
+}
+
+.disciplines-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 5.5rem;
+}
+
+.disciplines-title {
+  font-size: clamp(3.5rem, 7.8vw, 7.6rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  padding-left: 3.5vw;
+}
+
+.disciplines-subtitle {
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  max-width: 440px;
+}
+
+/* Grilla de 4 columnas asimétrica igual a Akaru */
+.disciplines-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1.65rem;
+  row-gap: 5rem;
+  padding-bottom: 7.5rem;
+}
+
+.team-card--col-1 {
+  grid-column: 1 / 2;
+}
+
+.team-card--col-2 {
+  grid-column: 2 / 3;
+}
+
+.team-card--col-3 {
+  grid-column: 3 / 4;
+}
+
+.team-card--col-4 {
+  grid-column: 4 / 5;
+}
+
+.team-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card__visual {
+  position: relative;
+  aspect-ratio: 3 / 3.9;
+  overflow: hidden;
+  background-color: rgba(14, 14, 14, 0.1);
+}
+
+.team-card__visual img {
+  transition: transform 0.7s var(--ease-out-expo);
+}
+
+.team-card:hover .team-card__visual img {
+  transform: scale(1.045);
+}
+
+/* Subtítulo descriptivo sutil en la parte baja de la foto al hacer hover */
+.team-card__caption-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.2rem 1rem 0.95rem;
+  background: linear-gradient(to top, rgba(14, 14, 14, 0.82), transparent);
+  color: var(--text-light);
+  font-size: 0.78rem;
+  line-height: 1.38;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s var(--ease-out-expo);
+}
+
+.team-card:hover .team-card__caption-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Barra inferior de la tarjeta con el nombre a la izq y el círculo negro a la der */
+.team-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.95rem 0 0.7rem;
+  border-bottom: 1px solid rgba(14, 14, 14, 0.35);
+  min-height: 3.1rem;
+}
+
+.team-card__name {
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-dark);
+}
+
+/* El circulito negro que se alarga al pasar el mouse (Idriss effect) */
+.team-card__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  min-width: 22px;
+  max-width: 22px;
+  padding: 0;
+  border-radius: 999px;
+  background-color: var(--bg-black);
+  color: #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width 0.5s var(--ease-out-expo),
+    padding 0.45s var(--ease-out-expo),
+     background-color 0.3s ease;
+}
+
+.team-card__pill-text {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s ease 0.08s, transform 0.35s var(--ease-out-expo) 0.05s;
+}
+
+.team-card:hover .team-card__pill {
+  max-width: 220px;
+  padding: 0 0.75rem;
+}
+
+.team-card:hover .team-card__pill-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Foto panorámica completa al final de Team */
+.disciplines-full-banner {
+  width: 100%;
+  height: clamp(380px, 68vw, 860px);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   BLOQUE 5: RECOGNITION & CURATED BENCHMARKS (AWARDS)
+   ========================================================================== */
+.benchmarks-section {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  padding: 9rem 0 9.5rem;
+}
+
+.benchmarks-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.65fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.benchmarks-counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.2rem;
+  padding-top: 2.4rem;
+}
+
+.benchmark-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.benchmark-stat__num {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+}
+
+.benchmark-stat__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.benchmarks-title {
+  font-size: clamp(3.8rem, 8.2vw, 8.2rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 2.2rem;
+}
+
+.benchmarks-paragraph {
+  font-size: clamp(1.45rem, 2.5vw, 2.45rem);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  max-width: 820px;
+}
+
+/* ==========================================================================
+   BLOQUE 6: CLIENTS / COLLABORATION & EXPERIMENTS
+   ========================================================================== */
+.clients-section {
+  background-color: var(--bg-black);
+  color: var(--text-light);
+  padding: 7.5rem 0 7rem;
+}
+
+.clients-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+.clients-title {
+  font-size: clamp(3.5rem, 7.6vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.clients-meta {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding-bottom: 0.6rem;
+}
+
+.clients-count {
+  font-size: clamp(1.35rem, 2vw, 1.95rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.clients-subtext {
+  max-width: 240px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.42;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+}
+
+/* Grilla de 8 recuadros negros que pasan a blanco en hover */
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-grid-black);
+  border-left: 1px solid var(--border-grid-black);
+}
+
+.client-box {
+  aspect-ratio: 1 / 0.88;
+  background-color: var(--bg-black);
+  color: var(--text-light);
+  border-right: 1px solid var(--border-grid-black);
+  border-bottom: 1px solid var(--border-grid-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.35s var(--ease-out-expo), color 0.35s var(--ease-out-expo);
+}
+
+.client-box__brand {
+  font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.client-box:hover {
+  background-color: #ffffff;
+  color: var(--bg-black);
+}
+
+.client-box:hover .client-box__brand {
+  transform: scale(1.04);
+}
+
+/* Bloque CTA de colaboración debajo de la grilla */
+.collaboration-cta {
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-grid-black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.collaboration-cta__quote {
+  font-size: clamp(1.25rem, 2vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+}
+
+.collaboration-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.05rem 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--text-light);
+  background-color: transparent;
+  color: var(--text-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 0.35s var(--ease-out-expo), color 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo);
+}
+
+.collaboration-cta__button:hover {
+  background-color: #ffffff;
+  color: var(--bg-black);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+   (El header, el menú y el footer vienen del maestro: css/style.css)
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .hero-stage {
+    min-height: auto;
+    gap: 3rem;
+  }
+
+  .hero-row--top {
+    flex-direction: column;
+    padding-left: 0;
+  }
+
+  .hero-lead {
+    margin-top: 1.5rem;
+    text-align: left;
+    max-width: 460px;
+  }
+
+  .hero-media--center {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: min(100%, 440px);
+    margin: 0 auto;
+  }
+
+  .hero-row--middle {
+    padding-right: 0;
+    margin-top: 0;
+  }
+
+  .hero-row--bottom {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .hero-media--left,
+  .hero-media--right {
+    width: min(100%, 340px);
+  }
+
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .disciplines-header {
+    grid-template-columns: 1fr;
+  }
+
+  .disciplines-title {
+    padding-left: 0;
+  }
+
+  .disciplines-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-card--col-1,
+  .team-card--col-2,
+  .team-card--col-3,
+  .team-card--col-4 {
+    grid-column: auto;
+  }
+
+  .benchmarks-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .section-container,
+  .hero-container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .manifesto-topbar {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .manifesto-kicker-col--right {
+    text-align: left;
+  }
+
+  .pillar-row {
+    grid-template-columns: 48px 1fr;
+  }
+
+  .disciplines-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .clients-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .clients-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}

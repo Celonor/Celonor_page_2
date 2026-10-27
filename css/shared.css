@@ -1,0 +1,85 @@
+/* ==========================================================================
+   SHARED.CSS — CELONOR
+   Piezas comunes de las páginas secundarias (agency, contact, expertise, projects, bio).
+   Orden de carga en las páginas secundarias:
+     1) css/<pagina>.css   2) css/style.css (MAESTRO: variables, píldora, overlay, botones, footer)   3) css/shared.css
+   index.html NO carga este archivo.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CORTINA DE LLEGADA: bloque negro vacío que se retira hacia arriba.
+      Está en el HTML de cada página, así cubre desde el primer frame (sin parpadeo).
+   -------------------------------------------------------------------------- */
+.cx-arrival {
+  position: fixed;
+  inset: 0;
+  background-color: #0e0e0e;
+  z-index: 10000;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   2. CORTINA DE CIERRE (la misma animación que el cierre de BIO):
+      sube una cortina negra desde abajo y el logo CELONOR entra letra por letra.
+   -------------------------------------------------------------------------- */
+.cx-curtain {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  background-color: #0e0e0e;
+  z-index: 10001;
+  transform: translateY(100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cx-curtain__logo {
+  display: inline-flex;
+  font-family: var(--font-condensed, var(--font-display, 'Antonio', Impact, sans-serif));
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  overflow: hidden;
+  padding: 0.2em 0.1em;
+}
+
+.cx-char {
+  display: inline-block;
+  transform: translateY(120%);
+}
+
+body.is-leaving {
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. FOOTER MAESTRO (el bloque final de index: datos + línea + CELONOR colosal)
+      en flujo normal de página. Reutiliza .contact-* de style.css tal cual.
+   -------------------------------------------------------------------------- */
+.contact-section.contact-section--static {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  z-index: auto;
+  will-change: auto;
+}
+
+.contact-section--static .contact-scroll-track {
+  width: 100%;
+  min-height: 0;
+  padding-top: clamp(4rem, 9vw, 8rem);
+  will-change: auto;
+}
+
+/* El logo colosal arranca ya revelado (en index lo desplaza main.js al hacer scroll) */
+.contact-section--static .contact-giant-logo {
+  transform: none;
+}

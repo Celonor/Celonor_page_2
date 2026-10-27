@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celonor — Creative Studio & Architecture</title>
+
+  <!-- Google Fonts: Antonio (logo CELONOR) + Inter (UI y textos), igual que index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Orden: estilos de la página -> MAESTRO (style.css de index) -> piezas compartidas -->
+  <link rel="stylesheet" href="css/agency.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body data-shared-menu>
+
+  <!-- Cortina de llegada: bloque negro vacío que se retira hacia arriba (shared.js) -->
+  <div class="cx-arrival" id="pageCurtain" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       LOGO FIJO + PÍLDORA MENU + OVERLAY FULLSCREEN
+       Copia exacta de los componentes de index.html (fuente única: css/style.css)
+  ========================================================================= -->
+  <a href="index.html" class="fixed-small-logo" id="smallAkaruLogo" aria-label="Volver al inicio">
+    <span class="small-char">C</span>
+    <span class="small-char">E</span>
+    <span class="small-char">L</span>
+    <span class="small-char">O</span>
+    <span class="small-char">N</span>
+    <span class="small-char">O</span>
+    <span class="small-char">R</span>
+  </a>
+
+  <button class="menu-pill" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOverlay">
+    <span class="menu-pill__text" id="menuText">MENU</span>
+    <span class="menu-pill__circle" id="menuCircle">
+      <span class="hamburger" id="pillHamburger">
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  </button>
+
+  <aside class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <header class="menu-overlay__header">
+      <div class="menu-overlay__static-logo" aria-hidden="true">CELONOR</div>
+
+      <div class="menu-overlay__top-right">
+        <div class="menu-lang-pill" role="group" aria-label="Selector de idioma">
+          <button type="button" class="menu-lang-btn" data-lang="fr">FR</button>
+          <span class="menu-lang-divider" aria-hidden="true">/</span>
+          <button type="button" class="menu-lang-btn is-active" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-overlay__content">
+      <nav class="menu-nav" aria-label="Navegación principal del sitio">
+        <div class="menu-nav__mask">
+          <a href="projects.html" class="menu-nav__link" data-menu-target="projects">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Projects</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="expertise" data-index-target="expertise">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Expertise</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="agency" data-index-target="agency">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Agency</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="contact" data-index-target="contact">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="menu-info-grid">
+        <div class="menu-info-block" data-menu-stagger>
+          <div class="menu-info-location">
+            <p class="menu-info-location__line">C.A.B.A.</p>
+            <p class="menu-info-location__line">BUENOS AIRES</p>
+            <p class="menu-info-location__line">ARGENTINA</p>
+          </div>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <ul class="menu-info-socials">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">INSTAGRAM</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">LINKEDIN</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">TWITTER</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">FACEBOOK</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="menu-info-link menu-info-link--email">
+            marcelo.orozco.toledo@gmail.com
+          </a>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="tel:+541131991066" class="menu-info-link menu-info-link--phone">
+            +54 11 3199-1066
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="menu-overlay__footer">
+      <div class="menu-overlay__card" id="menuFeatureCard">
+        <div class="menu-overlay__card-frame">
+          <img src="img/home.jpg" alt="Celonor Featured Work" class="menu-overlay__card-img" />
+        </div>
+      </div>
+
+      <div class="menu-overlay__giant-mask" aria-hidden="true">
+        <div class="menu-overlay__giant-logo" id="menuGiantLogo">
+          <span class="menu-giant-char">C</span>
+          <span class="menu-giant-char">E</span>
+          <span class="menu-giant-char">L</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">N</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">R</span>
+        </div>
+      </div>
+    </footer>
+  </aside>
+
+  <main id="smooth-content">
+
+    <!-- ======================================================================
+         BLOQUE 1: HERO / HEADLINE INTRODUCTORIO
+    ======================================================================= -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+
+        <!-- Top Eyebrow -->
+        <div class="hero-eyebrow reveal-fade">
+          <span>CREATIVE STUDIO — BUENOS AIRES</span>
+        </div>
+
+        <!-- Stage principal con texto escalonado, líneas e imágenes superpuestas -->
+        <div class="hero-stage">
+
+          <!-- Fila 1: "We craft" + Párrafo descriptivo a la derecha -->
+          <div class="hero-row hero-row--top">
+            <div class="hero-title-group hero-title-group--left">
+              <h1 class="hero-display">
+                <span class="hero-word" data-parallax="-0.05">We craft</span>
+              </h1>
+              <div class="hero-rule hero-rule--left"></div>
+            </div>
+
+            <p class="hero-lead reveal-fade">
+              CELONOR IS A CREATIVE DEVELOPMENT STUDIO BASED IN BUENOS AIRES,
+              FOCUSED ON HIGH-END <span class="u-underline">WEB DESIGN</span>,
+              <span class="u-underline">MOTION CHOREOGRAPHY</span>, AND
+              <span class="u-underline">INTERACTIVE DIGITAL SHOWCASES</span>.
+              INTERFACES WITH RHYTHM, CHARACTER, AND TECHNICAL DEPTH.
+              OTHERWISE, IT'S JUST PLAIN STATIC, RIGHT?
+            </p>
+          </div>
+
+          <!-- Imagen 1: Central vertical grande -->
+          <figure class="hero-media hero-media--center" data-speed="0.94">
+            <img src="agency/1.jpg" alt="Celonor Studio Architecture" />
+          </figure>
+
+          <!-- Fila 2: "fluid web" alineado a la derecha -->
+          <div class="hero-row hero-row--middle">
+            <div class="hero-title-group hero-title-group--right">
+              <div class="hero-display">
+                <span class="hero-word" data-parallax="0.06">fluid web</span>
+              </div>
+              <div class="hero-rule hero-rule--right"></div>
+            </div>
+          </div>
+
+          <!-- Fila 3: Imagen 2 (abajo izq) + "experiences" + Imagen 3 (abajo der) -->
+          <div class="hero-row hero-row--bottom">
+            <figure class="hero-media hero-media--left" data-speed="1.05">
+              <img src="agency/2.jpg" alt="Creative Direction Portrait" />
+            </figure>
+
+            <div class="hero-title-group hero-title-group--bottom">
+              <div class="hero-display">
+                <span class="hero-word" data-parallax="-0.03">experiences</span>
+              </div>
+              <div class="hero-rule hero-rule--bottom"></div>
+            </div>
+
+            <figure class="hero-media hero-media--right" data-speed="1.03">
+              <img src="agency/3.jpg" alt="Studio Craft & Collaboration" />
+            </figure>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           BLOQUE 2: MARQUEE / TICKER CONTINUO AUTOMÁTICO A LA IZQUIERDA
+      ===================================================================== -->
+      <div class="marquee-bar" aria-label="Studio core values ticker">
+        <div class="marquee-track">
+          <!-- Grupo 1 -->
+          <div class="marquee-group">
+            <span class="marquee-item">CREATIVE CODE</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">FLUID MOTION</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">EDITORIAL PACING</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">FUNCTIONAL LOGIC</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">BESPOKE CRAFT</span>
+            <span class="marquee-star">*</span>
+          </div>
+          <!-- Grupo 2 (Clon para loop infinito perfecto) -->
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-item">CREATIVE CODE</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">FLUID MOTION</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">EDITORIAL PACING</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">FUNCTIONAL LOGIC</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">BESPOKE CRAFT</span>
+            <span class="marquee-star">*</span>
+          </div>
+          <!-- Grupo 3 (Respaldo pantallas ultra-wide) -->
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-item">CREATIVE CODE</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">FLUID MOTION</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">EDITORIAL PACING</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">FUNCTIONAL LOGIC</span>
+            <span class="marquee-star">*</span>
+            <span class="marquee-item">BESPOKE CRAFT</span>
+            <span class="marquee-star">*</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BLOQUE 3: MANIFIESTO & FILOSOFÍA (3 PILARES)
+    ======================================================================= -->
+    <section class="manifesto-section" id="manifesto">
+      <div class="section-container">
+
+        <!-- Línea divisoria superior + Kicker de 3 columnas -->
+        <div class="manifesto-topbar">
+          <div class="manifesto-kicker-col">
+            CRAFTING DIGITAL SPACES<br />WITH PURPOSE &amp; OBSESSION
+          </div>
+          <div class="manifesto-kicker-col">
+            ARCHITECTURE, MOTION<br />&amp; INTERACTIVE DESIGN
+          </div>
+          <div class="manifesto-kicker-col manifesto-kicker-col--right">
+            EST. 2023 - 2026
+          </div>
+        </div>
+
+        <!-- Párrafo introductorio grande -->
+        <h2 class="manifesto-headline reveal-up">
+          From the very first line of code, the goal has been to move past template
+          monotony. Crafting memorable web environments requires blending architectural
+          discipline with genuine creative freedom.
+        </h2>
+
+        <!-- Grilla inferior: 2 Imágenes a la izquierda + 3 Pilares a la derecha -->
+        <div class="manifesto-grid">
+
+          <!-- Columna izquierda: 4.jpg (grande) y 5.jpg (chica al lado) -->
+          <div class="manifesto-visuals">
+            <figure class="manifesto-img manifesto-img--large reveal-fade">
+              <img src="agency/4.jpg" alt="Studio interior and natural light" />
+            </figure>
+            <figure class="manifesto-img manifesto-img--small reveal-fade">
+              <img src="agency/5.jpg" alt="Creative studio portrait" />
+            </figure>
+          </div>
+
+          <!-- Columna derecha: 3 Filas de Filosofía con asterisco -->
+          <div class="manifesto-pillars">
+
+            <article class="pillar-row reveal-up">
+              <div class="pillar-asterisk" aria-hidden="true">*</div>
+              <div class="pillar-content">
+                <h3 class="pillar-title">01 — CLARITY OVER NOISE</h3>
+                <p class="pillar-text">
+                  In an era of bloated frameworks and chaotic interfaces, restraint takes precedence.
+                  Clean code and intentional easing curves always outperform needless complexity.
+                </p>
+              </div>
+            </article>
+
+            <article class="pillar-row reveal-up">
+              <div class="pillar-asterisk" aria-hidden="true">*</div>
+              <div class="pillar-content">
+                <h3 class="pillar-title">02 — BREAK THE GRID WHEN IT MATTERS</h3>
+                <p class="pillar-text">
+                  Mastering structural standards is what gives us the license to subvert them.
+                  We honor intuition, functional logic, and smooth transitions that pull users into
+                  the experience.
+                </p>
+              </div>
+            </article>
+
+            <article class="pillar-row reveal-up">
+              <div class="pillar-asterisk" aria-hidden="true">*</div>
+              <div class="pillar-content">
+                <h3 class="pillar-title">03 — PERFORMANCE IS AN AESTHETIC</h3>
+                <p class="pillar-text">
+                  A striking visual layout means nothing if it stutters. Fluid 60fps animations,
+                  lightweight asset pipelines, and accessibility are treated as core design principles.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BLOQUE 4: TEAM / DISCIPLINES & CORE FOCUS
+    ======================================================================= -->
+    <section class="disciplines-section" id="disciplines">
+      <div class="section-container">
+
+        <!-- Cabecera de sección estilo Team -->
+        <div class="disciplines-header">
+          <h2 class="disciplines-title reveal-up">Disciplines &amp; Core Focus</h2>
+          <p class="disciplines-subtitle reveal-up">
+            Building seamless digital experiences requires wearing multiple hats with precision.
+            Bridging visual intuition with software engineering.
+          </p>
+        </div>
+
+        <!-- Grilla asimétrica editorial (4 columnas en desktop como Akaru) -->
+        <div class="disciplines-grid">
+
+          <!-- Card 1 (Columna 1) -> agency/6.jpg -->
+          <article class="team-card team-card--col-1 reveal-up">
+            <div class="team-card__visual">
+              <img src="agency/6.jpg" alt="Creative Frontend Development" />
+              <div class="team-card__caption-overlay">
+                <p>Architecture, semantic layouts, DOM manipulation &amp; responsive systems.</p>
+              </div>
+            </div>
+            <div class="team-card__meta">
+              <span class="team-card__name">Creative Frontend Development</span>
+              <span class="team-card__pill">
+                <span class="team-card__pill-text">DOM &amp; ARCHITECTURE</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Card 2 (Columna 3) -> agency/7.jpg -->
+          <article class="team-card team-card--col-3 reveal-up">
+            <div class="team-card__visual">
+              <img src="agency/7.jpg" alt="Motion Choreography" />
+              <div class="team-card__caption-overlay">
+                <p>GSAP timelines, ScrollTrigger orchestration &amp; fluid easing dynamics.</p>
+              </div>
+            </div>
+            <div class="team-card__meta">
+              <span class="team-card__name">Motion Choreography</span>
+              <span class="team-card__pill">
+                <span class="team-card__pill-text">GSAP &amp; SCROLLTRIGGER</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Card 3 (Columna 4) -> agency/8.jpg -->
+          <article class="team-card team-card--col-4 reveal-up">
+            <div class="team-card__visual">
+              <img src="agency/8.jpg" alt="UI & Editorial Direction" />
+              <div class="team-card__caption-overlay">
+                <p>Typographic hierarchy, compositional grids &amp; curated visual pacing.</p>
+              </div>
+            </div>
+            <div class="team-card__meta">
+              <span class="team-card__name">UI &amp; Editorial Direction</span>
+              <span class="team-card__pill">
+                <span class="team-card__pill-text">VISUAL HIERARCHY</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Card 4 (Columna 2) -> agency/9.jpg -->
+          <article class="team-card team-card--col-2 reveal-up">
+            <div class="team-card__visual">
+              <img src="agency/9.jpg" alt="Interactive Storytelling" />
+              <div class="team-card__caption-overlay">
+                <p>Cinematic curation, media pipelines &amp; bespoke narrative showcases.</p>
+              </div>
+            </div>
+            <div class="team-card__meta">
+              <span class="team-card__name">Interactive Storytelling</span>
+              <span class="team-card__pill">
+                <span class="team-card__pill-text">BESPOKE SHOWCASES</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Card 5 (Columna 4) -> agency/10.jpg -->
+          <article class="team-card team-card--col-4 reveal-up">
+            <div class="team-card__visual">
+              <img src="agency/10.jpg" alt="Systems & Optimization" />
+              <div class="team-card__caption-overlay">
+                <p>Asset compression, clean codebases &amp; performance refinement.</p>
+              </div>
+            </div>
+            <div class="team-card__meta">
+              <span class="team-card__name">Systems &amp; Optimization</span>
+              <span class="team-card__pill">
+                <span class="team-card__pill-text">60FPS PERFORMANCE</span>
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Imagen panorámica completa al final de Team / Disciplines -> agency/11.jpg -->
+      <figure class="disciplines-full-banner">
+        <img src="agency/11.jpg" alt="Celonor Full Studio Panorama" />
+      </figure>
+    </section>
+
+    <!-- ======================================================================
+         BLOQUE 5: RECOGNITION & CURATED BENCHMARKS (Solo cabecera + métricas, sin lista)
+    ======================================================================= -->
+    <section class="benchmarks-section" id="benchmarks">
+      <div class="section-container">
+        <div class="benchmarks-layout">
+
+          <!-- Contadores a la izquierda estilo AWWWARDS / FWA -->
+          <div class="benchmarks-counters reveal-up">
+            <div class="benchmark-stat">
+              <span class="benchmark-stat__num">10+</span>
+              <span class="benchmark-stat__label">ANIMATION &amp; VISUAL<br />BENCHMARKS</span>
+            </div>
+            <div class="benchmark-stat">
+              <span class="benchmark-stat__num">08+</span>
+              <span class="benchmark-stat__label">ORIGINAL SOUND &amp;<br />TIMING MASTERCLASSES</span>
+            </div>
+            <div class="benchmark-stat">
+              <span class="benchmark-stat__num">60 FPS</span>
+              <span class="benchmark-stat__label">SMOOTH INTERACTION<br />TARGET</span>
+            </div>
+          </div>
+
+          <!-- Título y Párrafo principal a la derecha (sin las listas inferiores) -->
+          <div class="benchmarks-intro">
+            <h2 class="benchmarks-title reveal-up">Benchmarks &amp; Curation</h2>
+            <p class="benchmarks-paragraph reveal-up">
+              Every project is held against the highest standards of contemporary digital culture.
+              Drawing direct inspiration from landmark productions in animation, sound design,
+              and modern creative engineering.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BLOQUE 6: CLIENTS / COLLABORATION & EXPERIMENTS
+    ======================================================================= -->
+    <section class="clients-section" id="collaboration">
+      <div class="section-container">
+
+        <!-- Cabecera estilo Clients -->
+        <div class="clients-header">
+          <h2 class="clients-title reveal-up">Collaboration &amp; Experiments</h2>
+
+          <div class="clients-meta reveal-up">
+            <span class="clients-count">Bespoke Craft</span>
+            <p class="clients-subtext">
+              OPEN TO FORWARD-THINKING PROJECTS, BESPOKE PORTFOLIO BUILDS,
+              AND CREATIVE WEB EXPERIMENTS.
+            </p>
+          </div>
+        </div>
+
+        <!-- Grilla de 8 recuadros negros que cambian a blanco al pasar el mouse -->
+        <div class="clients-grid">
+          <div class="client-box">
+            <span class="client-box__brand">CREATIVE PORTFOLIOS</span>
+          </div>
+          <div class="client-box">
+            <span class="client-box__brand">GSAP CHOREOGRAPHY</span>
+          </div>
+          <div class="client-box">
+            <span class="client-box__brand">INTERACTIVE ARCHIVES</span>
+          </div>
+          <div class="client-box">
+            <span class="client-box__brand">EDITORIAL PLATFORMS</span>
+          </div>
+          <div class="client-box">
+            <span class="client-box__brand">WEBGL &amp; MOTION LABS</span>
+          </div>
+          <div class="client-box">
+            <span class="client-box__brand">DESIGN SYSTEMS</span>
+          </div>
+          <div class="client-box">
+            <span class="client-box__brand">MEDIA PIPELINES</span>
+          </div>
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="client-box client-box--cta">
+            <span class="client-box__brand">YOUR PROJECT NEXT →</span>
+          </a>
+        </div>
+
+        <!-- Llamado a la acción final dentro de Collaboration -->
+        <div class="collaboration-cta reveal-up">
+          <p class="collaboration-cta__quote">
+            “Ready to build something unforgettable? Let's break the routine.”
+          </p>
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="collaboration-cta__button">
+            <span>GET IN TOUCH</span>
+            <span class="collaboration-cta__arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FOOTER MAESTRO (mismo bloque final de index: datos + línea + CELONOR colosal)
+    ======================================================================= -->
+    <footer class="contact-section contact-section--static" id="siteFooter">
+      <div class="contact-scroll-track">
+        <div class="contact-bottom">
+
+          <div class="contact-info-bar">
+            <div class="contact-col contact-col--location">
+              <p class="contact-location-line">CELONOR</p>
+              <p class="contact-location-line">C.A.B.A.</p>
+              <p class="contact-location-line">Buenos Aires, Argentina</p>
+            </div>
+
+            <div class="contact-col contact-col--direct">
+              <a href="mailto:marcelo.orozco.toledo@gmail.com" class="contact-direct-link">
+                marcelo.orozco.toledo@gmail.com
+              </a>
+              <a href="tel:+541131991066" class="contact-direct-link contact-direct-link--phone">
+                +54 11 3199-1066
+              </a>
+            </div>
+
+            <div class="contact-col contact-col--socials">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">INSTAGRAM</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">LINKEDIN</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">TWITTER</a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">FACEBOOK</a>
+            </div>
+
+            <div class="contact-col contact-col--legal">
+              <a href="#legal-notice" class="contact-legal-text contact-legal-link">LEGAL NOTICE</a>
+              <span class="contact-legal-text contact-legal-text--copy">CELONOR © 2026</span>
+            </div>
+          </div>
+
+          <div class="contact-giant-logo-wrap">
+            <div class="contact-giant-logo" aria-label="CELONOR">
+              <span>CELONOR</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- GSAP + ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Transición de cierre (estilo Bio), menú y logo compartidos -->
+  <script src="script/shared.js"></script>
+
+  <!-- Main Script -->
+  <script src="script/agency.js"></script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — CELONOR</title>
+
+  <!-- Google Fonts: Inter & Antonio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos de Projects -->
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. TELÓN DE TRANSICIÓN DE ENTRADA (CURTAIN)
+       ====================================================================== -->
+  <div class="page-veil" id="pageVeil" aria-hidden="true"></div>
+  <div class="transition-curtain" id="transitionCurtain" aria-hidden="true"></div>
+
+  <!-- ======================================================================
+       NAVEGACIÓN FIJA SUPERIOR (MISMO LOGO Y BOTÓN MENU QUE INDEX)
+       ====================================================================== -->
+  <a href="index.html" class="site-logo" id="siteLogo" aria-label="Volver al inicio de Celonor">CELONOR</a>
+
+  <button class="menu-pill" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOverlay">
+    <span class="menu-pill__text" id="menuText">MENU</span>
+    <span class="menu-pill__circle" id="menuCircle">
+      <span class="hamburger" id="pillHamburger">
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  </button>
+
+  <!-- OVERLAY DE MENÚ FULLSCREEN (idéntico al de index) -->
+  <aside class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    
+    <!-- A. HEADER DEL MENÚ: Logo estático izq + Idioma FR/EN y Círculo Naranja X der -->
+    <header class="menu-overlay__header">
+      <div class="menu-overlay__static-logo" aria-hidden="true">CELONOR</div>
+
+      <div class="menu-overlay__top-right">
+        <!-- Cápsula Píldora FR / EN -->
+        <div class="menu-lang-pill" role="group" aria-label="Selector de idioma">
+          <button type="button" class="menu-lang-btn" data-lang="fr">FR</button>
+          <span class="menu-lang-divider" aria-hidden="true">/</span>
+          <button type="button" class="menu-lang-btn is-active" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- B & C. CUERPO CENTRAL: Navegación Principal (Izq) + Datos de Contacto y Socials (Der) -->
+    <div class="menu-overlay__content">
+      
+      <!-- Columna Izquierda: Navegación Principal con flecha caricaturesca en Hover -->
+      <nav class="menu-nav" aria-label="Navegación principal del sitio">
+        <div class="menu-nav__mask">
+          <a href="projects.html" class="menu-nav__link" data-menu-target="projects">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Projects</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="expertise" data-index-target="expertise">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Expertise</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="agency" data-index-target="agency">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Agency</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="contact" data-index-target="contact">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Columna Derecha: Grid 2x2 de Contacto y Redes Sociales -->
+      <div class="menu-info-grid">
+        
+        <!-- Bloque 1: Ubicación -->
+        <div class="menu-info-block" data-menu-stagger>
+          <div class="menu-info-location">
+            <p class="menu-info-location__line">C.A.B.A.</p>
+            <p class="menu-info-location__line">BUENOS AIRES</p>
+            <p class="menu-info-location__line">ARGENTINA</p>
+          </div>
+        </div>
+
+        <!-- Bloque 2: Redes Sociales -->
+        <div class="menu-info-block" data-menu-stagger>
+          <ul class="menu-info-socials">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">INSTAGRAM</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">LINKEDIN</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">TWITTER</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">FACEBOOK</a></li>
+          </ul>
+        </div>
+
+        <!-- Bloque 3: Correo -->
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="menu-info-link menu-info-link--email">
+            marcelo.orozco.toledo@gmail.com
+          </a>
+        </div>
+
+        <!-- Bloque 4: Teléfono -->
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="tel:+541131991066" class="menu-info-link menu-info-link--phone">
+            +54 11 3199-1066
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- D. PARTE INFERIOR: Tarjeta flotante img/home.jpg (Izq) + Logo Colosal CELONOR (Der) -->
+    <footer class="menu-overlay__footer">
+      <div class="menu-overlay__card" id="menuFeatureCard">
+        <div class="menu-overlay__card-frame">
+          <img src="img/home.jpg" alt="Celonor Featured Work" class="menu-overlay__card-img" />
+        </div>
+      </div>
+
+      <div class="menu-overlay__giant-mask" aria-hidden="true">
+        <div class="menu-overlay__giant-logo" id="menuGiantLogo">
+          <span class="menu-giant-char">C</span>
+          <span class="menu-giant-char">E</span>
+          <span class="menu-giant-char">L</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">N</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">R</span>
+        </div>
+      </div>
+    </footer>
+
+  </aside>
+
+  <main class="projects-main">
+    <!-- ======================================================================
+         2. HEADER Y BARRA DE FILTROS DE CATEGORÍAS
+         ====================================================================== -->
+    <section class="projects-hero">
+      <div class="projects-hero__container">
+        <div class="projects-title-wrap">
+          <h1 class="projects-title">
+            Projects<sup class="projects-title__count">28</sup>
+          </h1>
+        </div>
+        <p class="projects-intro">
+          A curated collection of animations, short films, and groundbreaking series that push visual storytelling, character design, and motion aesthetics to their highest level.
+        </p>
+      </div>
+
+      <!-- Barra de 4 Categorías -->
+      <div class="category-bar" role="navigation" aria-label="Categorías de proyectos">
+        <ul class="category-bar__list">
+          <li class="category-bar__item" data-category="miniseries" style="--cat-color: var(--accent-orange);">
+            <button type="button" class="category-btn">
+              <span class="category-btn__dot-wrap">
+                <span class="category-btn__dot"></span>
+                <svg class="category-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+              <span class="category-btn__label">Miniseries</span>
+              <sup class="category-btn__count">7</sup>
+            </button>
+          </li>
+          <li class="category-bar__item" data-category="series" style="--cat-color: var(--accent-sage);">
+            <button type="button" class="category-btn">
+              <span class="category-btn__dot-wrap">
+                <span class="category-btn__dot"></span>
+                <svg class="category-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+              <span class="category-btn__label">Series</span>
+              <sup class="category-btn__count">7</sup>
+            </button>
+          </li>
+          <li class="category-bar__item" data-category="cortos" style="--cat-color: var(--accent-mauve);">
+            <button type="button" class="category-btn">
+              <span class="category-btn__dot-wrap">
+                <span class="category-btn__dot"></span>
+                <svg class="category-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+              <span class="category-btn__label">Cortos</span>
+              <sup class="category-btn__count">7</sup>
+            </button>
+          </li>
+          <li class="category-bar__item" data-category="peliculas" style="--cat-color: var(--accent-grey);">
+            <button type="button" class="category-btn">
+              <span class="category-btn__dot-wrap">
+                <span class="category-btn__dot"></span>
+                <svg class="category-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+              <span class="category-btn__label">Películas</span>
+              <sup class="category-btn__count">7</sup>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. GRILLA DE PROYECTOS: SECCIÓN 1
+         ====================================================================== -->
+    <section class="projects-featured" aria-label="Proyectos destacados">
+      <div class="featured-grid">
+
+        <article class="large-card" data-category="miniseries" style="--hover-bg: var(--accent-grey);">
+          <a href="bio.html?id=cyberpunk-edgerunners" class="large-card__link">
+            <header class="large-card__header">
+              <h2 class="large-card__title">Cyberpunk: Edgerunners</h2>
+              <p class="large-card__subtitle">Night City Reckoning &amp; High-Octane Chrome</p>
+            </header>
+            <div class="large-card__media-wrap">
+              <div class="large-card__media">
+                <img src="project/img/miniseries/1.jpg" alt="Cyberpunk: Edgerunners" class="large-card__img" loading="eager" />
+                <span class="large-card__center-title" aria-hidden="true">Cyberpunk: Edgerunners</span>
+              </div>
+            </div>
+            <footer class="large-card__footer">
+              <span class="large-card__category">MINISERIES</span>
+              <span class="year-pill">2022</span>
+            </footer>
+          </a>
+        </article>
+
+        <article class="large-card" data-category="peliculas" style="--hover-bg: var(--accent-sage);">
+          <a href="bio.html?id=a-silent-voice" class="large-card__link">
+            <header class="large-card__header">
+              <h2 class="large-card__title">A Silent Voice</h2>
+              <p class="large-card__subtitle">Redemption, Empathy &amp; Emotional Resonance</p>
+            </header>
+            <div class="large-card__media-wrap">
+              <div class="large-card__media">
+                <img src="project/img/peliculas/1.jpg" alt="A Silent Voice" class="large-card__img" loading="eager" />
+                <span class="large-card__center-title" aria-hidden="true">A Silent Voice</span>
+              </div>
+            </div>
+            <footer class="large-card__footer">
+              <span class="large-card__category">PELÍCULAS</span>
+              <span class="year-pill">2016</span>
+            </footer>
+          </a>
+        </article>
+
+        <article class="large-card" data-category="series" style="--hover-bg: var(--accent-mauve);">
+          <a href="bio.html?id=frieren" class="large-card__link">
+            <header class="large-card__header">
+              <h2 class="large-card__title">Frieren: Beyond Journey's End</h2>
+              <p class="large-card__subtitle">The Passage of Time &amp; Human Connection</p>
+            </header>
+            <div class="large-card__media-wrap">
+              <div class="large-card__media">
+                <img src="project/img/series/1.jpg" alt="Frieren: Beyond Journey's End" class="large-card__img" loading="lazy" />
+                <span class="large-card__center-title" aria-hidden="true">Frieren: Beyond Journey's End</span>
+              </div>
+            </div>
+            <footer class="large-card__footer">
+              <span class="large-card__category">SERIES</span>
+              <span class="year-pill">2023</span>
+            </footer>
+          </a>
+        </article>
+
+        <article class="large-card" data-category="cortos" style="--hover-bg: var(--accent-orange);">
+          <a href="bio.html?id=star-wars-visions" class="large-card__link">
+            <header class="large-card__header">
+              <h2 class="large-card__title">Star Wars: Visions</h2>
+              <p class="large-card__subtitle">Mythological Anime Anthologies &amp; Creative Freedom</p>
+            </header>
+            <div class="large-card__media-wrap">
+              <div class="large-card__media">
+                <img src="project/img/cortos/1.jpg" alt="Star Wars: Visions" class="large-card__img" loading="lazy" />
+                <span class="large-card__center-title" aria-hidden="true">Star Wars: Visions</span>
+              </div>
+            </div>
+            <footer class="large-card__footer">
+              <span class="large-card__category">CORTOS</span>
+              <span class="year-pill">2021</span>
+            </footer>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. GRILLA DE PROYECTOS: SECCIÓN 2 
+         ====================================================================== -->
+    <section class="projects-medium" aria-label="Selección secundaria de proyectos">
+      <div class="medium-grid">
+
+        <article class="medium-card" data-category="miniseries" style="--hover-bg: var(--accent-grey);">
+          <a href="bio.html?id=odd-taxi" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/miniseries/2.jpg" alt="Odd Taxi" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2021</span>
+                <span class="medium-card__tag">MINISERIES</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Odd Taxi</h3>
+                <p class="medium-card__subtitle">Mystery, Cynicism &amp; Anthropomorphic Crime</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="series" style="--hover-bg: var(--accent-sage);">
+          <a href="bio.html?id=mob-psycho-100" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/series/2.jpg" alt="Mob Psycho 100" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2016</span>
+                <span class="medium-card__tag">SERIES</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Mob Psycho 100</h3>
+                <p class="medium-card__subtitle">Psychic Explosions &amp; Genuine Kindness</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="cortos" style="--hover-bg: var(--accent-mauve);">
+          <a href="bio.html?id=pokemon-twilight-wings" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/cortos/2.jpg" alt="Pokémon: Twilight Wings" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2020</span>
+                <span class="medium-card__tag">CORTOS</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Pokémon: Twilight Wings</h3>
+                <p class="medium-card__subtitle">Intimate Vignettes of the Galar Region</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="peliculas" style="--hover-bg: var(--accent-orange);">
+          <a href="bio.html?id=look-back" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/peliculas/2.jpg" alt="Look Back" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2024</span>
+                <span class="medium-card__tag">PELÍCULAS</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Look Back</h3>
+                <p class="medium-card__subtitle">Artistic Obsession &amp; Parallel Paths</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="miniseries" style="--hover-bg: var(--accent-grey);">
+          <a href="bio.html?id=eizouken" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/miniseries/3.jpg" alt="Keep Your Hands Off Eizouken!" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2020</span>
+                <span class="medium-card__tag">MINISERIES</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Keep Your Hands Off Eizouken!</h3>
+                <p class="medium-card__subtitle">Passionate Worldbuilding &amp; Pure Animation</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="series" style="--hover-bg: var(--accent-sage);">
+          <a href="bio.html?id=vinland-saga" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/series/3.jpg" alt="Vinland Saga" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2019</span>
+                <span class="medium-card__tag">SERIES</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Vinland Saga</h3>
+                <p class="medium-card__subtitle">The Brutality of War &amp; The Search for Peace</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="cortos" style="--hover-bg: var(--accent-mauve);">
+          <a href="bio.html?id=gotcha" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/cortos/3.jpg" alt="Gotcha!" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2020</span>
+                <span class="medium-card__tag">CORTOS</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Gotcha!</h3>
+                <p class="medium-card__subtitle">Dynamic Tribute &amp; Bones Studio Craftsmanship</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="medium-card" data-category="peliculas" style="--hover-bg: var(--accent-orange);">
+          <a href="bio.html?id=suzume" class="medium-card__link">
+            <div class="medium-card__media">
+              <img src="project/img/peliculas/3.jpg" alt="Suzume" class="medium-card__img" loading="lazy" />
+            </div>
+            <div class="medium-card__content">
+              <div class="medium-card__meta">
+                <span class="year-pill">2022</span>
+                <span class="medium-card__tag">PELÍCULAS</span>
+              </div>
+              <div class="medium-card__info">
+                <h3 class="medium-card__title">Suzume</h3>
+                <p class="medium-card__subtitle">Closing Doors &amp; Healing Disaster Scars</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. LISTADO EDITORIAL INTERACTIVO 
+         ====================================================================== -->
+    <section class="projects-archive" aria-label="Archivo completo de obras">
+      <div class="archive-list" role="list">
+
+        <article class="archive-row" role="listitem" data-category="miniseries" style="--row-hover: var(--accent-grey);">
+          <a href="bio.html?id=bocchi-the-rock" class="archive-row__link">
+            <h3 class="archive-row__title">Bocchi the Rock!</h3>
+            <p class="archive-row__tagline">Social anxiety turned into sonic breakthrough</p>
+            <span class="archive-row__category">MINISERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2022</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="series" style="--row-hover: var(--accent-sage);">
+          <a href="bio.html?id=delicious-in-dungeon" class="archive-row__link">
+            <h3 class="archive-row__title">Delicious in Dungeon</h3>
+            <p class="archive-row__tagline">Ecological fantasy &amp; gourmet survival</p>
+            <span class="archive-row__category">SERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2024</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="cortos" style="--row-hover: var(--accent-mauve);">
+          <a href="bio.html?id=scott-pilgrim" class="archive-row__link">
+            <h3 class="archive-row__title">Scott Pilgrim Takes Off</h3>
+            <p class="archive-row__tagline">Subverting nostalgia through kaleidoscopic style</p>
+            <span class="archive-row__category">CORTOS</span>
+            <span class="archive-row__year"><span class="year-pill">2023</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="peliculas" style="--row-hover: var(--accent-orange);">
+          <a href="bio.html?id=pancreas" class="archive-row__link">
+            <h3 class="archive-row__title">I Want to Eat Your Pancreas</h3>
+            <p class="archive-row__tagline">Fleeting mortality and poignant youth</p>
+            <span class="archive-row__category">PELÍCULAS</span>
+            <span class="archive-row__year"><span class="year-pill">2018</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="miniseries" style="--row-hover: var(--accent-grey);">
+          <a href="bio.html?id=tatami-time-machine" class="archive-row__link">
+            <h3 class="archive-row__title">The Tatami Time Machine Blues</h3>
+            <p class="archive-row__tagline">Summer sci-fi farce in collegiate Kyoto</p>
+            <span class="archive-row__category">MINISERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2022</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="series" style="--row-hover: var(--accent-sage);">
+          <a href="bio.html?id=chainsaw-man" class="archive-row__link">
+            <h3 class="archive-row__title">Chainsaw Man</h3>
+            <p class="archive-row__tagline">Visceral devils, cinematic grit &amp; raw despair</p>
+            <span class="archive-row__category">SERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2022</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="cortos" style="--row-hover: var(--accent-mauve);">
+          <a href="bio.html?id=look-back-short" class="archive-row__link">
+            <h3 class="archive-row__title">Look Back (Short Cut)</h3>
+            <p class="archive-row__tagline">Silent dedication behind every single line</p>
+            <span class="archive-row__category">CORTOS</span>
+            <span class="archive-row__year"><span class="year-pill">2024</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="peliculas" style="--row-hover: var(--accent-orange);">
+          <a href="bio.html?id=weathering-with-you" class="archive-row__link">
+            <h3 class="archive-row__title">Weathering With You</h3>
+            <p class="archive-row__tagline">Tokyo drowned in rain, youth against the skies</p>
+            <span class="archive-row__category">PELÍCULAS</span>
+            <span class="archive-row__year"><span class="year-pill">2019</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="miniseries" style="--row-hover: var(--accent-grey);">
+          <a href="bio.html?id=pluto" class="archive-row__link">
+            <h3 class="archive-row__title">Pluto</h3>
+            <p class="archive-row__tagline">Human warmth inside artificial chassis</p>
+            <span class="archive-row__category">MINISERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2023</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="series" style="--row-hover: var(--accent-sage);">
+          <a href="bio.html?id=dandadan" class="archive-row__link">
+            <h3 class="archive-row__title">Dandadan</h3>
+            <p class="archive-row__tagline">Occult madness, aliens and turbo pacing</p>
+            <span class="archive-row__category">SERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2024</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="cortos" style="--row-hover: var(--accent-mauve);">
+          <a href="bio.html?id=eve-bokurano" class="archive-row__link">
+            <h3 class="archive-row__title">Eve: Bokurano</h3>
+            <p class="archive-row__tagline">Piercing vocal melodies &amp; urban surrealism</p>
+            <span class="archive-row__category">CORTOS</span>
+            <span class="archive-row__year"><span class="year-pill">2023</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="peliculas" style="--row-hover: var(--accent-orange);">
+          <a href="bio.html?id=tunnel-to-summer" class="archive-row__link">
+            <h3 class="archive-row__title">The Tunnel to Summer, the Exit of Goodbyes</h3>
+            <p class="archive-row__tagline">Time distorted to reclaim lost memories</p>
+            <span class="archive-row__category">PELÍCULAS</span>
+            <span class="archive-row__year"><span class="year-pill">2022</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="miniseries" style="--row-hover: var(--accent-grey);">
+          <a href="bio.html?id=devilman-crybaby" class="archive-row__link">
+            <h3 class="archive-row__title">Devilman Crybaby</h3>
+            <p class="archive-row__tagline">Apocalyptic tragedy and sorrowful distortion</p>
+            <span class="archive-row__category">MINISERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2018</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="series" style="--row-hover: var(--accent-sage);">
+          <a href="bio.html?id=apothecary-diaries" class="archive-row__link">
+            <h3 class="archive-row__title">The Apothecary Diaries</h3>
+            <p class="archive-row__tagline">Ancient poisons unraveled with razor intellect</p>
+            <span class="archive-row__category">SERIES</span>
+            <span class="archive-row__year"><span class="year-pill">2023</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="cortos" style="--row-hover: var(--accent-mauve);">
+          <a href="bio.html?id=shelter" class="archive-row__link">
+            <h3 class="archive-row__title">Shelter</h3>
+            <p class="archive-row__tagline">A virtual universe crafted from maternal love</p>
+            <span class="archive-row__category">CORTOS</span>
+            <span class="archive-row__year"><span class="year-pill">2016</span></span>
+          </a>
+        </article>
+
+        <article class="archive-row" role="listitem" data-category="peliculas" style="--row-hover: var(--accent-orange);">
+          <a href="bio.html?id=josee" class="archive-row__link">
+            <h3 class="archive-row__title">Josee, the Tiger and the Fish</h3>
+            <p class="archive-row__tagline">The ocean beyond wheels and societal walls</p>
+            <span class="archive-row__category">PELÍCULAS</span>
+            <span class="archive-row__year"><span class="year-pill">2020</span></span>
+          </a>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       6. FOOTER MONUMENTAL INVERTIDO
+       ====================================================================== -->
+  <footer class="footer-inverted">
+    <div class="footer-inverted__top">
+      <div class="footer-col">
+        <a href="https://maps.google.com/?q=C.A.B.A.,+Buenos+Aires,+Argentina" target="_blank" rel="noopener noreferrer" class="footer-interactive">
+          <span class="footer-line">CELONOR</span>
+          <span class="footer-line">C.A.B.A.</span>
+          <span class="footer-line">BUENOS AIRES, ARGENTINA</span>
+        </a>
+      </div>
+
+      <div class="footer-col footer-col--contact">
+        <div class="footer-group">
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="footer-interactive">marcelo.orozco.toledo@gmail.com</a>
+        </div>
+        <div class="footer-group footer-group--phone">
+          <a href="tel:+541131991066" class="footer-interactive">+54 11 3199-1066</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <ul class="footer-social-list">
+          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-interactive">INSTAGRAM</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-interactive">LINKEDIN</a></li>
+          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-interactive">TWITTER</a></li>
+          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-interactive">FACEBOOK</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col--legal">
+        <a href="#legal-notice" class="footer-interactive">LEGAL NOTICE</a>
+        <span class="footer-copyright">CELONOR © 2026</span>
+      </div>
+    </div>
+
+    <div class="footer-inverted__divider" role="separator"></div>
+
+    <div class="footer-inverted__monumental" aria-hidden="true">
+      <span class="footer-inverted__giant-text">CELONOR</span>
+    </div>
+  </footer>
+
+  <!-- GSAP 3 & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script/shared.js"></script>
+  <script src="script/projects.js"></script>
+</body>
+</html>

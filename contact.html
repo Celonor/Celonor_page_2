@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — CELONOR</title>
+
+  <!-- Google Fonts: Inter + Antonio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg-cream: #efede8;
+      --text-dark: #111111;
+      --text-muted: #555550;
+      --border-line: rgba(17, 17, 17, 0.16);
+      --bubble-01: #768775;
+      --bubble-02: #df865b;
+      --bubble-03: #b38e9b;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-condensed: 'Antonio', Impact, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      selection-background-color: var(--text-dark);
+      selection-color: var(--bg-cream);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       CONTENEDOR PRINCIPAL
+       (Preloader, header, menú y footer vienen del maestro: css/style.css + css/shared.css)
+       ========================================================================== */
+    .page-container {
+      padding: 7.5rem 2.5rem 0;
+      max-width: 1920px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       CONTACT HERO / CABECERA
+       ========================================================================== */
+    .hero-section {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 1.75rem;
+      min-height: 54vh;
+      align-items: stretch;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-title-wrap {
+      overflow: hidden;
+      margin-top: -0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(4.8rem, 11.8vw, 12.8rem);
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 0.92;
+      color: var(--text-dark);
+    }
+
+    .hero-tagline {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-top: 2rem;
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .hero-visual-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9.4;
+      position: relative;
+      overflow: hidden;
+      background: #131822;
+      border-radius: 2px;
+    }
+
+    .hero-visual-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: contrast(1.04) saturate(0.92);
+      transform: scale(1.06);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-visual-frame:hover img {
+      transform: scale(1);
+    }
+
+    .visual-overlay-badge {
+      position: absolute;
+      bottom: 0.85rem;
+      left: 0.95rem;
+      background: rgba(15, 19, 28, 0.72);
+      backdrop-filter: blur(8px);
+      color: #d8e2f0;
+      font-size: 0.62rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.65rem;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* ==========================================================================
+       SEPARADOR CON FLECHA CIRCULAR
+       ========================================================================== */
+    .procedure-bar {
+      border-top: 1px solid var(--border-line);
+      padding: 1.6rem 0 6.5rem;
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      align-items: start;
+    }
+
+    .circle-arrow-btn {
+      width: 5.2rem;
+      height: 5.2rem;
+      border-radius: 50%;
+      border: 1px solid rgba(17, 17, 17, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+    }
+
+    .circle-arrow-btn:hover {
+      background-color: var(--text-dark);
+      color: var(--bg-cream);
+      transform: translateY(3px);
+    }
+
+    .circle-arrow-btn svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .circle-arrow-btn:hover svg {
+      transform: translateY(4px);
+    }
+
+    .procedure-text {
+      font-size: clamp(1.65rem, 2.75vw, 2.85rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      padding-top: 0.15rem;
+    }
+
+    /* ==========================================================================
+       LOS 3 GRANDES ENLACES INTERACTIVOS (01, 02, 03)
+       ========================================================================== */
+    .interactive-links-section {
+      position: relative;
+      padding: 1rem 0 7.5rem;
+    }
+
+    /* Grilla ajustada para que el side-note quede cerca del texto principal */
+    .contact-item {
+      display: grid;
+      grid-template-columns: 230px max-content 1fr;
+      gap: 2.5rem;
+      align-items: baseline;
+      padding: 0.35rem 0;
+      position: relative;
+      cursor: none; 
+    }
+
+    .item-index {
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    }
+
+    .item-title {
+      font-size: clamp(3.3rem, 7.6vw, 8.2rem);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      line-height: 1.06;
+      color: var(--text-dark);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .contact-item:hover .item-title {
+      transform: translateX(10px);
+    }
+
+    .item-side-note {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.45;
+      color: var(--text-dark);
+      align-self: center;
+      min-height: 2.2em;
+    }
+
+    .interactive-links-section.is-hovering .contact-item:not(.is-active) .item-title,
+    .interactive-links-section.is-hovering .contact-item:not(.is-active) .item-index {
+      opacity: 0.38;
+    }
+
+    .contact-item .item-title,
+    .contact-item .item-index {
+      transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Burbuja seguidora */
+    .cursor-follower {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      background-color: var(--bubble-01);
+      pointer-events: none;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translate(-50%, -50%) scale(0);
+      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, background-color;
+    }
+
+    .cursor-follower svg {
+      width: 24px;
+      height: 24px;
+      stroke: #111111;
+      stroke-width: 1.8;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN (Tablets & Mobile)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 2rem;
+      }
+
+      .procedure-bar {
+        grid-template-columns: 100px 1fr;
+        padding-bottom: 4rem;
+      }
+
+      .contact-item {
+        grid-template-columns: 70px 1fr;
+        gap: 0.5rem;
+        padding: 1rem 0;
+        cursor: pointer;
+      }
+
+      .item-side-note {
+        grid-column: 2 / 3;
+        opacity: 0.75;
+      }
+
+      .cursor-follower {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .page-container {
+        padding: 6rem 1.25rem 0;
+      }
+
+      .procedure-bar {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .circle-arrow-btn {
+        width: 3.8rem;
+        height: 3.8rem;
+      }
+
+      .contact-item {
+        grid-template-columns: 42px 1fr;
+      }
+    }
+  </style>
+
+  <!-- Orden: estilos de la página (arriba) -> MAESTRO (style.css de index) -> piezas compartidas -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body data-shared-menu>
+
+  <!-- Cortina de llegada: bloque negro vacío que se retira hacia arriba (shared.js) -->
+  <div class="cx-arrival" id="pageCurtain" aria-hidden="true"></div>
+
+  <!-- CURSOR SEGUIDOR CIRCULAR (01, 02, 03) -->
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M7 17L17 7M17 7H8M17 7V16" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- ========================================================================
+       LOGO FIJO + PÍLDORA MENU + OVERLAY FULLSCREEN
+       Copia exacta de los componentes de index.html (fuente única: css/style.css)
+  ========================================================================= -->
+  <a href="index.html" class="fixed-small-logo" id="smallAkaruLogo" aria-label="Volver al inicio">
+    <span class="small-char">C</span>
+    <span class="small-char">E</span>
+    <span class="small-char">L</span>
+    <span class="small-char">O</span>
+    <span class="small-char">N</span>
+    <span class="small-char">O</span>
+    <span class="small-char">R</span>
+  </a>
+
+  <button class="menu-pill" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOverlay">
+    <span class="menu-pill__text" id="menuText">MENU</span>
+    <span class="menu-pill__circle" id="menuCircle">
+      <span class="hamburger" id="pillHamburger">
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  </button>
+
+  <aside class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <header class="menu-overlay__header">
+      <div class="menu-overlay__static-logo" aria-hidden="true">CELONOR</div>
+
+      <div class="menu-overlay__top-right">
+        <div class="menu-lang-pill" role="group" aria-label="Selector de idioma">
+          <button type="button" class="menu-lang-btn" data-lang="fr">FR</button>
+          <span class="menu-lang-divider" aria-hidden="true">/</span>
+          <button type="button" class="menu-lang-btn is-active" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-overlay__content">
+      <nav class="menu-nav" aria-label="Navegación principal del sitio">
+        <div class="menu-nav__mask">
+          <a href="projects.html" class="menu-nav__link" data-menu-target="projects">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Projects</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="expertise" data-index-target="expertise">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Expertise</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="agency" data-index-target="agency">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Agency</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="contact" data-index-target="contact">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="menu-info-grid">
+        <div class="menu-info-block" data-menu-stagger>
+          <div class="menu-info-location">
+            <p class="menu-info-location__line">C.A.B.A.</p>
+            <p class="menu-info-location__line">BUENOS AIRES</p>
+            <p class="menu-info-location__line">ARGENTINA</p>
+          </div>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <ul class="menu-info-socials">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">INSTAGRAM</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">LINKEDIN</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">TWITTER</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">FACEBOOK</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="menu-info-link menu-info-link--email">
+            marcelo.orozco.toledo@gmail.com
+          </a>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="tel:+541131991066" class="menu-info-link menu-info-link--phone">
+            +54 11 3199-1066
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="menu-overlay__footer">
+      <div class="menu-overlay__card" id="menuFeatureCard">
+        <div class="menu-overlay__card-frame">
+          <img src="img/home.jpg" alt="Celonor Featured Work" class="menu-overlay__card-img" />
+        </div>
+      </div>
+
+      <div class="menu-overlay__giant-mask" aria-hidden="true">
+        <div class="menu-overlay__giant-logo" id="menuGiantLogo">
+          <span class="menu-giant-char">C</span>
+          <span class="menu-giant-char">E</span>
+          <span class="menu-giant-char">L</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">N</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">R</span>
+        </div>
+      </div>
+    </footer>
+  </aside>
+
+  <main class="page-container">
+
+    <!-- 1. CONTACT HERO / CABECERA -->
+    <section class="hero-section">
+      <div class="hero-left">
+        <div class="hero-title-wrap">
+          <h1 class="hero-title" id="heroTitle">Contact</h1>
+        </div>
+        <p class="hero-tagline" id="heroTagline">LET'S START A CONVERSATION</p>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-visual-frame">
+          <img
+            src="img/contact.jpg"
+            alt="Minimalist dark workspace with soft blue ambient light"
+          />
+          <span class="visual-overlay-badge">C.A.B.A. // STUDIO SETUP</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SEPARADOR CON FLECHA CIRCULAR -->
+    <section class="procedure-bar">
+      <button class="circle-arrow-btn" id="scrollToLinksBtn" aria-label="Ir a las opciones de contacto">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4V20M12 20L6 14M12 20L18 14" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <p class="procedure-text" id="procedureText">Let’s build something together.</p>
+    </section>
+
+    <!-- 3. LOS 3 GRANDES ENLACES INTERACTIVOS (01, 02, 03) -->
+    <section class="interactive-links-section" id="linksSection">
+
+      <a
+        href="mailto:marcelo.orozco.toledo@gmail.com?subject=New%20Project%20Inquiry"
+        class="contact-item"
+        data-color="#768775"
+        data-note="/ CUSTOM WEB, GSAP & PORTFOLIOS"
+      >
+        <span class="item-index">01</span>
+        <span class="item-title">Start a project</span>
+        <span class="item-side-note"></span>
+      </a>
+
+      <a
+        href="mailto:marcelo.orozco.toledo@gmail.com?subject=Hello%20Celonor"
+        class="contact-item"
+        data-color="#df865b"
+        data-note="/ FRONTEND TALKS & CREATIVE IDEAS"
+      >
+        <span class="item-index">02</span>
+        <span class="item-title">Say hello</span>
+        <span class="item-side-note"></span>
+      </a>
+
+      <a
+        href="https://github.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-item"
+        data-color="#b38e9b"
+        data-note="/ BEHIND THE SCENES & REPOSITORIES"
+      >
+        <span class="item-index">03</span>
+        <span class="item-title">Explore the source</span>
+        <span class="item-side-note"></span>
+      </a>
+
+    </section>
+
+    <!-- 4. FOOTER MAESTRO (mismo bloque final de index: datos + línea + CELONOR colosal) -->
+    <footer class="contact-section contact-section--static" id="siteFooter">
+      <div class="contact-scroll-track">
+        <div class="contact-bottom">
+
+          <div class="contact-info-bar">
+            <div class="contact-col contact-col--location">
+              <p class="contact-location-line">CELONOR</p>
+              <p class="contact-location-line">C.A.B.A.</p>
+              <p class="contact-location-line">Buenos Aires, Argentina</p>
+            </div>
+
+            <div class="contact-col contact-col--direct">
+              <a href="mailto:marcelo.orozco.toledo@gmail.com" class="contact-direct-link">
+                marcelo.orozco.toledo@gmail.com
+              </a>
+              <a href="tel:+541131991066" class="contact-direct-link contact-direct-link--phone">
+                +54 11 3199-1066
+              </a>
+            </div>
+
+            <div class="contact-col contact-col--socials">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">INSTAGRAM</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">LINKEDIN</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">TWITTER</a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">FACEBOOK</a>
+            </div>
+
+            <div class="contact-col contact-col--legal">
+              <a href="#legal-notice" class="contact-legal-text contact-legal-link">LEGAL NOTICE</a>
+              <span class="contact-legal-text contact-legal-text--copy">CELONOR © 2026</span>
+            </div>
+          </div>
+
+          <div class="contact-giant-logo-wrap">
+            <div class="contact-giant-logo" aria-label="CELONOR">
+              <span>CELONOR</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Transición de cierre (estilo Bio), menú y logo compartidos -->
+  <script src="script/shared.js"></script>
+
+  <!-- LÓGICA DE ANIMACIÓN E INTERACCIÓN (GSAP) -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Entrada del hero: arranca cuando shared.js retira la cortina de llegada (evento celonor:ready).
+    //    El estado inicial (oculto) se aplica de inmediato para evitar saltos.
+    window.addEventListener("DOMContentLoaded", () => {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from("#heroTitle", {
+        yPercent: 100,
+        duration: 1,
+        ease: "power4.out"
+      })
+      .from(".hero-visual-frame", {
+        clipPath: "inset(100% 0% 0% 0%)",
+        duration: 1.1,
+        ease: "expo.out"
+      }, "-=0.85")
+      .from(["#heroTagline", ".procedure-bar"], {
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power2.out"
+      }, "-=0.6");
+
+      const playIntro = () => tl.play();
+      document.addEventListener("celonor:ready", playIntro, { once: true });
+      setTimeout(playIntro, 3000); // red de seguridad si el evento no llega
+    });
+
+    // 2. Scroll suave
+    document.getElementById("scrollToLinksBtn").addEventListener("click", () => {
+      document.getElementById("linksSection").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // 3. Cursor seguidor circular + Efecto Tipeo
+    const linksSection = document.getElementById("linksSection");
+    const contactItems = document.querySelectorAll(".contact-item");
+    const follower = document.getElementById("cursorFollower");
+
+    const xTo = gsap.quickTo(follower, "x", { duration: 0.35, ease: "power3.out" });
+    const yTo = gsap.quickTo(follower, "y", { duration: 0.35, ease: "power3.out" });
+
+    window.addEventListener("mousemove", (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    });
+
+    const typingIntervals = new WeakMap();
+
+    function typeSideNote(element, text) {
+      if (typingIntervals.has(element)) {
+        clearInterval(typingIntervals.get(element));
+      }
+      element.textContent = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+        }
+      }, 18);
+      typingIntervals.set(element, interval);
+    }
+
+    function clearSideNote(element) {
+      if (typingIntervals.has(element)) {
+        clearInterval(typingIntervals.get(element));
+      }
+      element.textContent = "";
+    }
+
+    linksSection.addEventListener("mouseenter", () => {
+      linksSection.classList.add("is-hovering");
+      gsap.to(follower, {
+        scale: 1,
+        duration: 0.45,
+        ease: "back.out(1.4)"
+      });
+    });
+
+    linksSection.addEventListener("mouseleave", () => {
+      linksSection.classList.remove("is-hovering");
+      contactItems.forEach((item) => item.classList.remove("is-active"));
+      gsap.to(follower, {
+        scale: 0,
+        duration: 0.35,
+        ease: "power3.in"
+      });
+    });
+
+    contactItems.forEach((item) => {
+      const sideNote = item.querySelector(".item-side-note");
+      const noteText = item.getAttribute("data-note");
+      const bubbleColor = item.getAttribute("data-color");
+
+      item.addEventListener("mouseenter", () => {
+        contactItems.forEach((el) => el.classList.remove("is-active"));
+        item.classList.add("is-active");
+
+        follower.style.backgroundColor = bubbleColor;
+
+        gsap.fromTo(
+          follower.querySelector("svg"),
+          { x: -5, y: 5, opacity: 0.5 },
+          { x: 0, y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }
+        );
+
+        typeSideNote(sideNote, noteText);
+      });
+
+      item.addEventListener("mouseleave", () => {
+        item.classList.remove("is-active");
+        clearSideNote(sideNote);
+      });
+    });
+  </script>
+</body>
+</html>

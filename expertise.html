@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expertise — CELONOR</title>
+
+  <!-- Google Fonts: Antonio (logo CELONOR) + Inter (UI y textos), igual que index. Anton se mantiene para el monograma de esta página -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Antonio:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Orden: estilos de la página -> MAESTRO (style.css de index) -> piezas compartidas -->
+  <link rel="stylesheet" href="css/expertise.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body data-shared-menu>
+
+  <!-- Cortina de llegada: bloque negro vacío que se retira hacia arriba (shared.js) -->
+  <div class="cx-arrival" id="pageCurtain" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       LOGO FIJO + PÍLDORA MENU + OVERLAY FULLSCREEN
+       Copia exacta de los componentes de index.html (fuente única: css/style.css)
+  ========================================================================= -->
+  <a href="index.html" class="fixed-small-logo" id="smallAkaruLogo" aria-label="Volver al inicio">
+    <span class="small-char">C</span>
+    <span class="small-char">E</span>
+    <span class="small-char">L</span>
+    <span class="small-char">O</span>
+    <span class="small-char">N</span>
+    <span class="small-char">O</span>
+    <span class="small-char">R</span>
+  </a>
+
+  <button class="menu-pill" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOverlay">
+    <span class="menu-pill__text" id="menuText">MENU</span>
+    <span class="menu-pill__circle" id="menuCircle">
+      <span class="hamburger" id="pillHamburger">
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  </button>
+
+  <aside class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <header class="menu-overlay__header">
+      <div class="menu-overlay__static-logo" aria-hidden="true">CELONOR</div>
+
+      <div class="menu-overlay__top-right">
+        <div class="menu-lang-pill" role="group" aria-label="Selector de idioma">
+          <button type="button" class="menu-lang-btn" data-lang="fr">FR</button>
+          <span class="menu-lang-divider" aria-hidden="true">/</span>
+          <button type="button" class="menu-lang-btn is-active" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-overlay__content">
+      <nav class="menu-nav" aria-label="Navegación principal del sitio">
+        <div class="menu-nav__mask">
+          <a href="projects.html" class="menu-nav__link" data-menu-target="projects">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Projects</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="expertise" data-index-target="expertise">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Expertise</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="agency" data-index-target="agency">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Agency</span>
+          </a>
+        </div>
+
+        <div class="menu-nav__mask">
+          <a href="index.html" class="menu-nav__link" data-menu-target="contact" data-index-target="contact">
+            <span class="menu-nav__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="arrow-stem" pathLength="1" d="M6 18 L18 6" /><path class="arrow-head" pathLength="1" d="M8 6 H18 V16" /></svg></span>
+            <span class="menu-nav__text">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="menu-info-grid">
+        <div class="menu-info-block" data-menu-stagger>
+          <div class="menu-info-location">
+            <p class="menu-info-location__line">C.A.B.A.</p>
+            <p class="menu-info-location__line">BUENOS AIRES</p>
+            <p class="menu-info-location__line">ARGENTINA</p>
+          </div>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <ul class="menu-info-socials">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">INSTAGRAM</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">LINKEDIN</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">TWITTER</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="menu-info-link">FACEBOOK</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="mailto:marcelo.orozco.toledo@gmail.com" class="menu-info-link menu-info-link--email">
+            marcelo.orozco.toledo@gmail.com
+          </a>
+        </div>
+
+        <div class="menu-info-block" data-menu-stagger>
+          <a href="tel:+541131991066" class="menu-info-link menu-info-link--phone">
+            +54 11 3199-1066
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="menu-overlay__footer">
+      <div class="menu-overlay__card" id="menuFeatureCard">
+        <div class="menu-overlay__card-frame">
+          <img src="img/home.jpg" alt="Celonor Featured Work" class="menu-overlay__card-img" />
+        </div>
+      </div>
+
+      <div class="menu-overlay__giant-mask" aria-hidden="true">
+        <div class="menu-overlay__giant-logo" id="menuGiantLogo">
+          <span class="menu-giant-char">C</span>
+          <span class="menu-giant-char">E</span>
+          <span class="menu-giant-char">L</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">N</span>
+          <span class="menu-giant-char">O</span>
+          <span class="menu-giant-char">R</span>
+        </div>
+      </div>
+    </footer>
+  </aside>
+
+  <main id="smooth-content">
+
+    <!-- =================================================================
+         BLOQUE 1: HERO / HEADLINE INTRODUCTORIO
+    ================================================================== -->
+    <section class="hero">
+      <!-- Círculos decorativos de fondo -->
+      <div class="hero-circles">
+        <div class="circle circle-blue"></div>
+        <div class="circle circle-orange"></div>
+      </div>
+
+      <div class="hero-container">
+        <!-- Fila superior del título -->
+        <div class="hero-top-row">
+          <div class="overflow-mask">
+            <h1 class="hero-title hero-title-left">aim for</h1>
+          </div>
+          <p class="hero-sub-right">
+            CREATIVE FRONTEND &amp; MOTION — BUENOS AIRES
+          </p>
+        </div>
+
+        <!-- Línea divisoria horizontal -->
+        <div class="hero-line"></div>
+
+        <!-- Fila inferior del título -->
+        <div class="hero-bottom-row">
+          <p class="hero-sub-left">
+            CRAFTING INTERACTIVE WEBSITES WITH PRECISION
+          </p>
+          <div class="overflow-mask">
+            <h1 class="hero-title hero-title-right">motion only</h1>
+          </div>
+        </div>
+
+        <!-- Párrafo principal -->
+        <div class="hero-intro-wrap">
+          <p class="hero-paragraph">
+            Regardless of passing trends or framework fatigue, my focus lies in crafting bespoke web experiences, interactive archives, and fluid motion design. Bridging clean architecture with cinematic visual rhythm to build memorable digital spaces.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         GALERÍA ASIMÉTRICA PRE-SKILLS
+    ================================================================== -->
+    <section class="showcase-split">
+      <div class="showcase-left">
+        <div class="showcase-img-box showcase-big">
+          <img src="expertise/1.jpg" alt="Featured project 1" />
+        </div>
+      </div>
+      <div class="showcase-right">
+        <div class="showcase-img-box showcase-small">
+          <img src="expertise/2.jpg" alt="Featured project 2" />
+        </div>
+        <div class="showcase-img-box showcase-small">
+          <img src="expertise/3.jpg" alt="Featured project 3" />
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         BLOQUE 2: SKILLS (3 COLUMNAS)
+    ================================================================== -->
+    <section class="skills-section">
+      <div class="skills-header">
+        <h2 class="skills-main-title">Skills</h2>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Columna 01 -->
+        <div class="skill-col">
+          <div class="skill-col-header">
+            <span class="skill-num">01</span>
+            <h3 class="skill-title">Design &amp; Direction</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Creative Direction</li>
+            <li>UI &amp; Interaction Design</li>
+            <li>Visual Pacing</li>
+            <li>Typography Systems</li>
+            <li>Wireframing &amp; Prototyping</li>
+            <li>Character &amp; Asset Curation</li>
+            <li>Cinematic Storyboarding</li>
+            <li>Layout Architecture</li>
+          </ul>
+        </div>
+
+        <!-- Columna 02 -->
+        <div class="skill-col">
+          <div class="skill-col-header">
+            <span class="skill-num">02</span>
+            <h3 class="skill-title">Development</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Creative Frontend</li>
+            <li>GSAP Motion Choreography</li>
+            <li>ScrollTrigger Dynamics</li>
+            <li>Smooth Scroll Interactions</li>
+            <li>Responsive Interfaces</li>
+            <li>Semantic HTML &amp; Modern CSS</li>
+            <li>Performance &amp; Clean Code</li>
+            <li>Asset Pipeline Optimization</li>
+          </ul>
+        </div>
+
+        <!-- Columna 03 -->
+        <div class="skill-col">
+          <div class="skill-col-header">
+            <span class="skill-num">03</span>
+            <h3 class="skill-title">Technologies</h3>
+          </div>
+          <ul class="skill-list">
+            <li>JavaScript (ES6+)</li>
+            <li>GSAP / ScrollTrigger</li>
+            <li>HTML5 / CSS3 / Tailwind</li>
+            <li>Python &amp; Automation</li>
+            <li>Git &amp; GitLab / GitHub</li>
+            <li>Responsive SVG &amp; Canvas</li>
+            <li>Cloudinary CDN</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         RULETA AUTOMÁTICA DE 9 IMÁGENES
+    ================================================================== -->
+    <section class="roulette-section">
+      <div class="roulette-viewport">
+        <div class="roulette-track" id="rouletteTrack">
+          <!-- Tira original (1 a 9) -->
+          <div class="roulette-item"><img src="expertise/1.jpg" alt="Slide 1"></div>
+          <div class="roulette-item"><img src="expertise/2.jpg" alt="Slide 2"></div>
+          <div class="roulette-item"><img src="expertise/3.jpg" alt="Slide 3"></div>
+          <div class="roulette-item"><img src="expertise/4.jpg" alt="Slide 4"></div>
+          <div class="roulette-item"><img src="expertise/5.jpg" alt="Slide 5"></div>
+          <div class="roulette-item"><img src="expertise/6.jpg" alt="Slide 6"></div>
+          <div class="roulette-item"><img src="expertise/7.jpg" alt="Slide 7"></div>
+          <div class="roulette-item"><img src="expertise/8.jpg" alt="Slide 8"></div>
+          <div class="roulette-item"><img src="expertise/9.jpg" alt="Slide 9"></div>
+          <!-- Duplicado para loop infinito perfecto sin saltos -->
+          <div class="roulette-item"><img src="expertise/1.jpg" alt="Slide 1"></div>
+          <div class="roulette-item"><img src="expertise/2.jpg" alt="Slide 2"></div>
+          <div class="roulette-item"><img src="expertise/3.jpg" alt="Slide 3"></div>
+          <div class="roulette-item"><img src="expertise/4.jpg" alt="Slide 4"></div>
+          <div class="roulette-item"><img src="expertise/5.jpg" alt="Slide 5"></div>
+          <div class="roulette-item"><img src="expertise/6.jpg" alt="Slide 6"></div>
+          <div class="roulette-item"><img src="expertise/7.jpg" alt="Slide 7"></div>
+          <div class="roulette-item"><img src="expertise/8.jpg" alt="Slide 8"></div>
+          <div class="roulette-item"><img src="expertise/9.jpg" alt="Slide 9"></div>
+        </div>
+      </div>
+
+      <div class="roulette-caption-bar">
+        <p>CREATIVE FRONTEND &amp; MOTION — INTERACTIVE ARCHIVES &amp; BESPOKE EXPERIENCES</p>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         BLOQUE 3: MANIFIESTO PRE-EXPERTISE (EDITORIAL + ANIMACIÓN RODILLO)
+    ================================================================== -->
+    <section class="manifesto-section">
+      <div class="manifesto-grid">
+        <!-- Composición de 3 bloques animados con scroll (como en el video 00:09 - 00:13) -->
+        <div class="manifesto-monogram-wrap">
+          <!-- Caja chica izquierda -->
+          <div class="mono-box mono-box-small">
+            <div class="mono-roller roller-up">
+              <span>0</span>
+              <span>5</span>
+              <span>0</span>
+            </div>
+          </div>
+
+          <!-- Caja central grande con monograma C / 05 -->
+          <div class="mono-box mono-box-main">
+            <div class="mono-roller roller-main">
+              <span>05</span>
+              <span>C</span>
+              <span>05</span>
+            </div>
+          </div>
+
+          <!-- Caja mediana derecha -->
+          <div class="mono-box mono-box-right">
+            <div class="mono-roller roller-down">
+              <span>5</span>
+              <span>C</span>
+              <span>0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Párrafo derecho -->
+        <div class="manifesto-text-wrap">
+          <p class="manifesto-paragraph">
+            To set a project apart, real impact lives in the details: the easing curve of a scroll, the weight of a typography reveal, and the discipline of clean code. Building digital spaces with creative freedom, taking interactions to places people wouldn't expect.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         BLOQUE 4: EXPERTISE (5 SLIDES APILADOS CON SCROLLTRIGGER)
+    ================================================================== -->
+    <section class="expertise-pin-section" id="expertiseSection">
+      <div class="expertise-slides-wrapper">
+
+        <!-- SLIDE 01: Dusty Blue (#c1ccd7) -->
+        <article class="exp-slide slide-1" style="--bg-color: #c1ccd7;">
+          <h2 class="exp-main-heading">Expertise</h2>
+          <div class="exp-content-grid">
+            <div class="exp-left">
+              <span class="exp-num">01</span>
+              <h3 class="exp-title">Frontend Architecture</h3>
+            </div>
+
+            <div class="exp-center">
+              <div class="exp-img-container">
+                <img src="expertise/1.jpg" alt="01 Frontend Architecture" />
+              </div>
+            </div>
+
+            <div class="exp-right">
+              <ul class="exp-tags">
+                <li>/ COMPONENT DESIGN</li>
+                <li>/ RESPONSIVE GRIDS</li>
+                <li>/ CLEAN CODE</li>
+                <li>/ STATE MANAGEMENT</li>
+                <li>/ PERFORMANCE</li>
+              </ul>
+              <a href="#siteFooter" class="see-projects-btn">
+                <span class="see-projects-btn__text">SEE EXPERTISE</span>
+                <span class="see-projects-btn__dot-wrap">
+                  <span class="see-projects-btn__dot"></span>
+                  <span class="see-projects-btn__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                      <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- SLIDE 02: Mauve / Malva (#b597a3) -->
+        <article class="exp-slide slide-2" style="--bg-color: #b597a3;">
+          <h2 class="exp-main-heading">Expertise</h2>
+          <div class="exp-content-grid">
+            <div class="exp-left">
+              <span class="exp-num">02</span>
+              <h3 class="exp-title">Creative Interaction</h3>
+            </div>
+
+            <div class="exp-center">
+              <div class="exp-img-container">
+                <img src="expertise/2.jpg" alt="02 Creative Interaction" />
+              </div>
+            </div>
+
+            <div class="exp-right">
+              <ul class="exp-tags">
+                <li>/ GSAP ANIMATIONS</li>
+                <li>/ SCROLLTRIGGER</li>
+                <li>/ TIMELINE CHOREOGRAPHY</li>
+                <li>/ MICRO-INTERACTIONS</li>
+                <li>/ UI DYNAMICS</li>
+              </ul>
+              <a href="#siteFooter" class="see-projects-btn">
+                <span class="see-projects-btn__text">SEE EXPERTISE</span>
+                <span class="see-projects-btn__dot-wrap">
+                  <span class="see-projects-btn__dot"></span>
+                  <span class="see-projects-btn__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                      <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- SLIDE 03: Sage Green (#7c8f7f) -->
+        <article class="exp-slide slide-3" style="--bg-color: #7c8f7f;">
+          <h2 class="exp-main-heading">Expertise</h2>
+          <div class="exp-content-grid">
+            <div class="exp-left">
+              <span class="exp-num">03</span>
+              <h3 class="exp-title">Interface Aesthetics</h3>
+            </div>
+
+            <div class="exp-center">
+              <div class="exp-img-container">
+                <img src="expertise/3.jpg" alt="03 Interface Aesthetics" />
+              </div>
+            </div>
+
+            <div class="exp-right">
+              <ul class="exp-tags">
+                <li>/ MINIMALIST AESTHETIC</li>
+                <li>/ EDITORIAL TYPOGRAPHY</li>
+                <li>/ COLOR HARMONY</li>
+                <li>/ VISUAL PACING</li>
+                <li>/ PROTOTYPING</li>
+              </ul>
+              <a href="#siteFooter" class="see-projects-btn">
+                <span class="see-projects-btn__text">SEE EXPERTISE</span>
+                <span class="see-projects-btn__dot-wrap">
+                  <span class="see-projects-btn__dot"></span>
+                  <span class="see-projects-btn__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                      <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- SLIDE 04: Warm Sand / Crema (#f4eee9) -->
+        <article class="exp-slide slide-4" style="--bg-color: #f4eee9;">
+          <h2 class="exp-main-heading">Expertise</h2>
+          <div class="exp-content-grid">
+            <div class="exp-left">
+              <span class="exp-num">04</span>
+              <h3 class="exp-title">Motion &amp; Timing</h3>
+            </div>
+
+            <div class="exp-center">
+              <div class="exp-img-container">
+                <img src="expertise/4.jpg" alt="04 Motion & Timing" />
+              </div>
+            </div>
+
+            <div class="exp-right">
+              <ul class="exp-tags">
+                <li>/ FRAME-BY-FRAME PACING</li>
+                <li>/ KEYFRAME PRECISION</li>
+                <li>/ EASING CURVES</li>
+                <li>/ SCROLL SEQUENCING</li>
+                <li>/ SEAMLESS LOOPS</li>
+              </ul>
+              <a href="#siteFooter" class="see-projects-btn">
+                <span class="see-projects-btn__text">SEE EXPERTISE</span>
+                <span class="see-projects-btn__dot-wrap">
+                  <span class="see-projects-btn__dot"></span>
+                  <span class="see-projects-btn__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                      <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- SLIDE 05: Terracotta / Naranja (#d97843) -->
+        <article class="exp-slide slide-5" style="--bg-color: #d97843;">
+          <h2 class="exp-main-heading">Expertise</h2>
+          <div class="exp-content-grid">
+            <div class="exp-left">
+              <span class="exp-num">05</span>
+              <h3 class="exp-title">Curated Showcases</h3>
+            </div>
+
+            <div class="exp-center">
+              <div class="exp-img-container">
+                <img src="expertise/5.jpg" alt="05 Curated Showcases" />
+              </div>
+            </div>
+
+            <div class="exp-right">
+              <ul class="exp-tags">
+                <li>/ IMMERSIVE ARCHIVES</li>
+                <li>/ VISUAL STORYTELLING</li>
+                <li>/ CREATIVE CODE</li>
+                <li>/ EXPERIMENTAL WEB</li>
+                <li>/ MEDIA COMPOSITION</li>
+              </ul>
+              <a href="#siteFooter" class="see-projects-btn">
+                <span class="see-projects-btn__text">SEE EXPERTISE</span>
+                <span class="see-projects-btn__dot-wrap">
+                  <span class="see-projects-btn__dot"></span>
+                  <span class="see-projects-btn__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path class="arrow-stem" pathLength="1" d="M6 18 L18 6" />
+                      <path class="arrow-head" pathLength="1" d="M8 6 H18 V16" />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =================================================================
+         FOOTER MAESTRO (mismo bloque final de index: datos + línea + CELONOR colosal)
+    ================================================================== -->
+    <footer class="contact-section contact-section--static" id="siteFooter">
+      <div class="contact-scroll-track">
+        <div class="contact-bottom">
+
+          <div class="contact-info-bar">
+            <div class="contact-col contact-col--location">
+              <p class="contact-location-line">CELONOR</p>
+              <p class="contact-location-line">C.A.B.A.</p>
+              <p class="contact-location-line">Buenos Aires, Argentina</p>
+            </div>
+
+            <div class="contact-col contact-col--direct">
+              <a href="mailto:marcelo.orozco.toledo@gmail.com" class="contact-direct-link">
+                marcelo.orozco.toledo@gmail.com
+              </a>
+              <a href="tel:+541131991066" class="contact-direct-link contact-direct-link--phone">
+                +54 11 3199-1066
+              </a>
+            </div>
+
+            <div class="contact-col contact-col--socials">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">INSTAGRAM</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">LINKEDIN</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">TWITTER</a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">FACEBOOK</a>
+            </div>
+
+            <div class="contact-col contact-col--legal">
+              <a href="#legal-notice" class="contact-legal-text contact-legal-link">LEGAL NOTICE</a>
+              <span class="contact-legal-text contact-legal-text--copy">CELONOR © 2026</span>
+            </div>
+          </div>
+
+          <div class="contact-giant-logo-wrap">
+            <div class="contact-giant-logo" aria-label="CELONOR">
+              <span>CELONOR</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Transición de cierre (estilo Bio), menú y logo compartidos -->
+  <script src="script/shared.js"></script>
+
+  <!-- Nuestro Script -->
+  <script src="script/expertise.js"></script>
+</body>
+</html>
